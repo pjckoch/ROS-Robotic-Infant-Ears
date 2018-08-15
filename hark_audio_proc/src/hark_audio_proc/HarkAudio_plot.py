@@ -25,7 +25,7 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         self.grPCM.plotItem.showGrid(True, True, 0.5)
         self.maxFFT=0
         self.maxPCM=0
-        self.fft=None
+        self.rfft=None
         self.fftlen = None
         self.audiowave=None
         self.freqs=None
@@ -41,27 +41,27 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         updates the plot everytime it receives a signal from the subscriber
         """
         if type(msg) == HarkFFT:
-            self.fft = np.asarray(msg.src[0].fftdata_real,dtype=np.float32)
+            self.rfft = np.asarray(msg.src[0].fftdata_real,dtype=np.float32)
             self.fftlen = int(msg.length)
             self.sample_rate = 48000
             self.freqs = sp.fftpack.rfftfreq(self.fftlen, 1.0/self.sample_rate)
         elif type(msg) == HarkWave:
             self.audiowave = np.asarray(msg.src[0].wavedata,dtype=np.int32)
             self.chunk = int(msg.length)
-        if not self.audiowave is None and not self.fft is None:
-            if not self.fft is None:
+        if not self.audiowave is None and not self.rfft is None:
+            if not self.rfft is None:
                 pcmMax=np.max(np.abs(self.audiowave))
             if pcmMax>self.maxPCM:
                 self.maxPCM=pcmMax
                 self.grPCM.plotItem.setRange(yRange=[-pcmMax,pcmMax])
-            if np.max(self.fft)>self.maxFFT:
-                self.maxFFT=np.max(np.abs(self.fft))
+            if np.max(self.rfft)>self.maxFFT:
+                self.maxFFT=np.max(np.abs(self.rfft))
                 self.grFFT.plotItem.setRange(yRange=[0,1])
             self.pbLevel.setValue(1000*pcmMax/self.maxPCM)
             pen=pyqtgraph.mkPen(color='b')
             self.grPCM.plot(np.arange(self.chunk)/float(48000), self.audiowave,pen=pen,clear=True)
             pen=pyqtgraph.mkPen(color='r')
-            self.grFFT.plot(self.freqs,2*self.fft/self.maxFFT,pen=pen,clear=True)
+            self.grFFT.plot(self.freqs,2*self.rfft/self.maxFFT,pen=pen,clear=True)
     
     def monitoringCallback(self,msg):
         self.emit(QtCore.SIGNAL("changeUI(PyQt_PyObject)"),msg)

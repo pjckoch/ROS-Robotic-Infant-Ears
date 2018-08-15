@@ -64,7 +64,7 @@
     </Node>
     <Node name="node_MultiFFT_1" type="MultiFFT" x="530" y="430">
       <Parameter name="LENGTH" type="subnet_param" value="LENGTH" description="FFT length in sample. [default: 512]"/>
-      <Parameter name="WINDOW" type="string" value="CONJ" description="A window function for FFT. WINDOW should be CONJ, HAMMING, RECTANGLE, or HANNING. [default: CONJ]"/>
+      <Parameter name="WINDOW" type="string" value="HAMMING" description="A window function for FFT. WINDOW should be CONJ, HAMMING, RECTANGLE, or HANNING. [default: CONJ]"/>
       <Parameter name="WINDOW_LENGTH" type="subnet_param" value="LENGTH" description="Window length of the window function. [default: 512]"/>
     </Node>
     <Node name="node_RosHarkMsgsPublisher_2" type="RosHarkMsgsPublisher" x="920" y="400">

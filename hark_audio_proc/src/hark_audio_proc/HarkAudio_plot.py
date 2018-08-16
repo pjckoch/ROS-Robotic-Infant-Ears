@@ -43,7 +43,7 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         if type(msg) == HarkFFT:
             self.rfft = np.asarray(msg.src[0].fftdata_real,dtype=np.float32)
             self.fftlen = int(msg.length)
-            self.sample_rate = 48000
+            self.sample_rate = 48000 
             self.freqs = sp.fftpack.rfftfreq(self.fftlen, 1.0/self.sample_rate)
         elif type(msg) == HarkWave:
             self.audiowave = np.asarray(msg.src[0].wavedata,dtype=np.int32)

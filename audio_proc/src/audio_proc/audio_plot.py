@@ -19,10 +19,17 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         pyqtgraph.setConfigOption('background', 'w') #before loading widget
         super(qtSubAndPlot,self).__init__(parent)
         self.setupUi(self)
+<<<<<<< HEAD
         self.grFFT.plotItem.showGrid(True, True, 0.7)
         self.grPCM.plotItem.showGrid(True, True, 0.7)
         self.maxFFT=1
         self.maxPCM=1
+=======
+        self.grFFT.plotItem.showGrid(True, True, 0.5)
+        self.grPCM.plotItem.showGrid(True, True, 0.5)
+        self.maxFFT=0
+        self.maxPCM=0
+>>>>>>> 14b153be40cc1f8bd6a5f88f062d7e64569fc386
         self.fft=None
         self.audiowave=None
         self.freqs=None

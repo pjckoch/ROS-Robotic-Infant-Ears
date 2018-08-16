@@ -19,8 +19,8 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         pyqtgraph.setConfigOption('background', 'w') #before loading widget
         super(qtSubAndPlot,self).__init__(parent)
         self.setupUi(self)
-        self.grFFT.plotItem.showGrid(True, True, 0.7)
-        self.grPCM.plotItem.showGrid(True, True, 0.7)
+        self.grFFT.plotItem.showGrid(True, True, 0.5)
+        self.grPCM.plotItem.showGrid(True, True, 0.5)
         self.maxFFT=0
         self.maxPCM=0
         self.fft=None

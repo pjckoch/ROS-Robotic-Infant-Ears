@@ -7,10 +7,10 @@
     </Node>
     <Node name="node_LOOP0_1" type="LOOP0" x="460" y="110">
       <Parameter name="LENGTH" type="int" value="1024" description="subnet_param"/>
-      <Parameter name="ADVANCE" type="int" value="440" description="subnet_param"/>
+      <Parameter name="ADVANCE" type="int" value="480" description="subnet_param"/>
       <Parameter name="CHANNEL_COUNT" type="int" value="1" description="subnet_param"/>
       <Parameter name="SAMPLING_RATE" type="int" value="48000" description="subnet_param"/>
-      <Parameter name="DEVICE" type="string" value="plughw:0,0" description="subnet_param"/>
+      <Parameter name="DEVICE" type="string" value="plughw:2,0" description="subnet_param"/>
     </Node>
     <NetOutput name="VALUE" node="node_RosNodeGenerator_1" terminal="VALUE" object_type="int" description="int parameter"/>
     <NetOutput name="OUTPUT0" node="node_LOOP0_1" terminal="OUTPUT0" object_type="any" description="Dynamic"/>

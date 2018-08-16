@@ -21,8 +21,8 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         self.setupUi(self)
         self.grFFT.plotItem.showGrid(True, True, 0.7)
         self.grPCM.plotItem.showGrid(True, True, 0.7)
-        self.maxFFT=0
-        self.maxPCM=0
+        self.maxFFT=1
+        self.maxPCM=1
         self.fft=None
         self.audiowave=None
         self.freqs=None
@@ -46,10 +46,7 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
                 self.grPCM.plotItem.setRange(yRange=[-pcmMax,pcmMax])
             if np.max(self.fft)>self.maxFFT:
                 self.maxFFT=np.max(np.abs(self.fft))
-                #self.grFFT.plotItem.setRange(yRange=[0,1000])
                 self.grFFT.plotItem.setRange(yRange=[0,1])
-            # Convert the fft magnitude to decibels
-            #self.fft = self.fft*2/len(self.fft)
             self.pbLevel.setValue(1000*pcmMax/self.maxPCM)
             pen=pyqtgraph.mkPen(color='b')
             self.grPCM.plot(np.arange(self.chunk)/float(self.sample_rate), self.audiowave,pen=pen,clear=True)
@@ -57,11 +54,9 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
             self.grFFT.plot(self.freqs,self.fft/self.maxFFT,pen=pen,clear=True)
         
         timer = QtCore.QTimer()
-        #timer.start(20)
     
     def monitoringCallback(self,msg):
         self.emit(QtCore.SIGNAL("changeUI(PyQt_PyObject)"),msg)
-        #QtCore.QTimer.singleShot(1, self.updatePlot) # QUICKLY repeat
 
 if __name__=="__main__":
     app = QtGui.QApplication(sys.argv)

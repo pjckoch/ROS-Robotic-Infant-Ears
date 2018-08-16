@@ -61,7 +61,7 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
             pen=pyqtgraph.mkPen(color='b')
             self.grPCM.plot(np.arange(self.chunk)/float(48000), self.audiowave,pen=pen,clear=True)
             pen=pyqtgraph.mkPen(color='r')
-            self.grFFT.plot(self.freqs,2*self.rfft/self.maxFFT,pen=pen,clear=True)
+            self.grFFT.plot(self.freqs,2*np.abs(self.rfft)/self.maxFFT,pen=pen,clear=True)
     
     def monitoringCallback(self,msg):
         self.emit(QtCore.SIGNAL("changeUI(PyQt_PyObject)"),msg)

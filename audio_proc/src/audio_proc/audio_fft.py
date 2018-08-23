@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 
 import rospy
+from std_msgs.msg import Header
 import numpy as np
 import scipy as sp
 from scipy import signal
-from audio_proc.msg import AudioWav, FFTData
+from audio_proc.msg import FFTData
 from rospy.numpy_msg import numpy_msg
 from audio_common_msgs.msg import AudioData
 
@@ -19,13 +20,13 @@ def getFFT(data,srate):
       
       # apply Hamming Window function
       fft = data*sp.signal.hamming(len(data))
-      # our input is real, so use rfft
-      fft = sp.fftpack.rfft(data)
-      
-      # compute DFT using FFT algorithm
-      #fft=sp.fftpack.fft(data)
+
+      # our input is real, so use rfft to compute DFT
+      fft = sp.fftpack.rfft(data) 
+
       # remove imaginary part
       fft=np.abs(fft)
+
       # get the DFT sample frequencies
       freqs=sp.fftpack.rfftfreq(len(fft),1.0/srate)
 
@@ -67,9 +68,14 @@ class FourierTransform():
         Calls the getFFT function and publishes the FFT data along with the time-domain signal.
         Note that there is no publishing rate specified since the rate is determined by the 
         incoming audio stream."""
+        
+        # create timestamp with time from callback start
+        header = Header()
+        header.stamp = rospy.Time.now()
+
         self.data = np.frombuffer(msg.data, dtype=np.int16)
         self.fft, self.freqs = getFFT(self.data, 48000)
-        self.pub.publish(self.data, self.fft, self.freqs)
+        self.pub.publish(header, self.data, self.fft, self.freqs)
 
 
     def subscribe(self):

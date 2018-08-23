@@ -7,7 +7,7 @@ import scipy as sp
 from scipy import signal
 from audio_proc.msg import FFTData
 from rospy.numpy_msg import numpy_msg
-from audio_common_msgs.msg import AudioData
+from audio_common_msgs.msg import AudioDataStampedRaw
 
 #MINTIME = 10000000
 #MAXTIME = 0
@@ -80,7 +80,7 @@ class FourierTransform():
 
     def subscribe(self):
         """constantly checks for incoming audio chunks"""
-        rospy.Subscriber("audio", AudioData, self.publishFFT)
+        rospy.Subscriber("audio", AudioDataStampedRaw, self.publishFFT)
         rospy.spin()
 
  

@@ -37,7 +37,7 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         """
         self.fft = np.asarray(msg.fft,dtype=np.float32)
         self.freqs = np.asarray(msg.freqs,dtype=np.float32)
-        self.audiowave = np.asarray(msg.data,dtype=np.int32)
+        self.audiowave = np.asarray(msg.wavedata,dtype=np.int32)
         self.chunk = self.sample_rate/100 # publishing rate is 100
         if not self.audiowave is None and not self.fft is None:
             pcmMax=np.max(np.abs(self.audiowave))

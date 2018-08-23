@@ -1,5 +1,5 @@
 diff -crB --new-file audio_common/audio_capture/CHANGELOG.rst audio_common_patched/audio_capture/CHANGELOG.rst
-*** audio_common/audio_capture/CHANGELOG.rst	2018-08-23 13:13:41.241195420 +0200
+*** audio_common/audio_capture/CHANGELOG.rst	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/CHANGELOG.rst	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,136 ****
@@ -141,7 +141,7 @@ diff -crB --new-file audio_common/audio_capture/CHANGELOG.rst audio_common_patch
 - * Contributors: Austin Hendrix, Brian Gerkey, Nate Koenig, nkoenig
 --- 0 ----
 diff -crB --new-file audio_common/audio_capture/CMakeLists.txt audio_common_patched/audio_capture/CMakeLists.txt
-*** audio_common/audio_capture/CMakeLists.txt	2018-08-23 13:13:41.241195420 +0200
+*** audio_common/audio_capture/CMakeLists.txt	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,24 ****
@@ -171,14 +171,14 @@ diff -crB --new-file audio_common/audio_capture/CMakeLists.txt audio_common_patc
 -    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 --- 0 ----
 diff -crB --new-file audio_common/audio_capture/.gitignore audio_common_patched/audio_capture/.gitignore
-*** audio_common/audio_capture/.gitignore	2018-08-23 13:13:41.241195420 +0200
+*** audio_common/audio_capture/.gitignore	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/.gitignore	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - build
 --- 0 ----
 diff -crB --new-file audio_common/audio_capture/launch/capture.launch audio_common_patched/audio_capture/launch/capture.launch
-*** audio_common/audio_capture/launch/capture.launch	2018-08-23 13:13:41.241195420 +0200
+*** audio_common/audio_capture/launch/capture.launch	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/launch/capture.launch	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,21 ****
@@ -205,7 +205,7 @@ diff -crB --new-file audio_common/audio_capture/launch/capture.launch audio_comm
 - </launch>
 --- 0 ----
 diff -crB --new-file audio_common/audio_capture/launch/capture_to_file.launch audio_common_patched/audio_capture/launch/capture_to_file.launch
-*** audio_common/audio_capture/launch/capture_to_file.launch	2018-08-23 13:13:41.241195420 +0200
+*** audio_common/audio_capture/launch/capture_to_file.launch	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/launch/capture_to_file.launch	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,20 ****
@@ -231,7 +231,7 @@ diff -crB --new-file audio_common/audio_capture/launch/capture_to_file.launch au
 - </launch>
 --- 0 ----
 diff -crB --new-file audio_common/audio_capture/launch/capture_wave.launch audio_common_patched/audio_capture/launch/capture_wave.launch
-*** audio_common/audio_capture/launch/capture_wave.launch	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_capture/launch/capture_wave.launch	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/launch/capture_wave.launch	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,13 ****
@@ -250,7 +250,7 @@ diff -crB --new-file audio_common/audio_capture/launch/capture_wave.launch audio
 - </launch>
 --- 0 ----
 diff -crB --new-file audio_common/audio_capture/mainpage.dox audio_common_patched/audio_capture/mainpage.dox
-*** audio_common/audio_capture/mainpage.dox	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_capture/mainpage.dox	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/mainpage.dox	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,21 ****
@@ -277,7 +277,7 @@ diff -crB --new-file audio_common/audio_capture/mainpage.dox audio_common_patche
 - */
 --- 0 ----
 diff -crB --new-file audio_common/audio_capture/package.xml audio_common_patched/audio_capture/package.xml
-*** audio_common/audio_capture/package.xml	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_capture/package.xml	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/package.xml	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,29 ****
@@ -312,7 +312,7 @@ diff -crB --new-file audio_common/audio_capture/package.xml audio_common_patched
 - </package>
 --- 0 ----
 diff -crB --new-file audio_common/audio_capture/src/audio_capture.cpp audio_common_patched/audio_capture/src/audio_capture.cpp
-*** audio_common/audio_capture/src/audio_capture.cpp	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_capture/src/audio_capture.cpp	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_capture/src/audio_capture.cpp	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,227 ****
@@ -688,10 +688,10 @@ diff -crB --new-file audio_common/audio_common/audio_capture/CHANGELOG.rst audio
 + * Contributors: Austin Hendrix, Brian Gerkey, Nate Koenig, nkoenig
 diff -crB --new-file audio_common/audio_common/audio_capture/CMakeLists.txt audio_common_patched/audio_common/audio_capture/CMakeLists.txt
 *** audio_common/audio_common/audio_capture/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
---- audio_common_patched/audio_common/audio_capture/CMakeLists.txt	2018-08-23 12:31:25.222927486 +0200
+--- audio_common_patched/audio_common/audio_capture/CMakeLists.txt	2018-08-23 14:08:31.982973000 +0200
 ***************
 *** 0 ****
---- 1,49 ----
+--- 1,33 ----
 + cmake_minimum_required(VERSION 2.8.3)
 + 
 + project(audio_capture)
@@ -711,33 +711,17 @@ diff -crB --new-file audio_common/audio_common/audio_capture/CMakeLists.txt audi
 +   audio_capture src/audio_capture.cpp
 + )
 + 
-+ add_executable(
-+   audiostampedraw_capture src/audiostampedraw_capture.cpp
-+ )
-+ 
 + 
 + target_link_libraries(
 +   audio_capture ${catkin_LIBRARIES} ${GST1.0_LIBRARIES} ${Boost_LIBRARIES}
 + )
 + 
-+ target_link_libraries(
-+   audiostampedraw_capture ${catkin_LIBRARIES} ${GST1.0_LIBRARIES} ${Boost_LIBRARIES}
-+ )
-+ 
 + add_dependencies(
-+   audio_capture audiostampedraw_capture ${catkin_EXPORTED_TARGETS}
-+ )
-+ 
-+ add_dependencies(
-+   audiostampedraw_capture ${catkin_EXPORTED_TARGETS}
++   audio_capture ${catkin_EXPORTED_TARGETS}
 + )
 + 
 + install(TARGETS audio_capture
 +    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-+ 
-+ install(TARGETS audiostampedraw_capture
-+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-+ 
 + 
 + install(DIRECTORY launch
 +    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
@@ -750,7 +734,7 @@ diff -crB --new-file audio_common/audio_common/audio_capture/.gitignore audio_co
 + build
 diff -crB --new-file audio_common/audio_common/audio_capture/launch/capture.launch audio_common_patched/audio_common/audio_capture/launch/capture.launch
 *** audio_common/audio_common/audio_capture/launch/capture.launch	1970-01-01 01:00:00.000000000 +0100
---- audio_common_patched/audio_common/audio_capture/launch/capture.launch	2018-08-23 10:52:16.592463325 +0200
+--- audio_common_patched/audio_common/audio_capture/launch/capture.launch	2018-08-23 13:54:01.871659247 +0200
 ***************
 *** 0 ****
 --- 1,21 ----
@@ -775,29 +759,6 @@ diff -crB --new-file audio_common/audio_common/audio_capture/launch/capture.laun
 +   </group>
 + 
 + </launch>
-diff -crB --new-file audio_common/audio_common/audio_capture/launch/capture_stampedraw.launch audio_common_patched/audio_common/audio_capture/launch/capture_stampedraw.launch
-*** audio_common/audio_common/audio_capture/launch/capture_stampedraw.launch	1970-01-01 01:00:00.000000000 +0100
---- audio_common_patched/audio_common/audio_capture/launch/capture_stampedraw.launch	2018-08-23 13:09:15.446756461 +0200
-***************
-*** 0 ****
---- 1,17 ----
-+ <launch>
-+   <arg name="device" default="" />
-+   <arg name="channels" default="1" />
-+   <arg name="sample_rate" default="16000" />
-+   <arg name="depth" default="16" />
-+ 
-+   <!-- publish audio data as wav format --> 
-+   <node name="audio_capture" pkg="audio_capture" type="audiostampedraw_capture" output="screen">
-+ 
-+     <param name="format" value="wave" />
-+     <param name="channels" value="$(arg channels)" />
-+     <param name="depth" value="$(arg depth)" />
-+     <param name="sample_rate" value="$(arg sample_rate)" />
-+     <param name="device" value="$(arg device)" />
-+   </node>
-+ </launch>
-+ 
 diff -crB --new-file audio_common/audio_common/audio_capture/launch/capture_to_file.launch audio_common_patched/audio_common/audio_capture/launch/capture_to_file.launch
 *** audio_common/audio_common/audio_capture/launch/capture_to_file.launch	1970-01-01 01:00:00.000000000 +0100
 --- audio_common_patched/audio_common/audio_capture/launch/capture_to_file.launch	2018-08-23 10:52:16.592463325 +0200
@@ -826,7 +787,7 @@ diff -crB --new-file audio_common/audio_common/audio_capture/launch/capture_to_f
 + </launch>
 diff -crB --new-file audio_common/audio_common/audio_capture/launch/capture_wave.launch audio_common_patched/audio_common/audio_capture/launch/capture_wave.launch
 *** audio_common/audio_common/audio_capture/launch/capture_wave.launch	1970-01-01 01:00:00.000000000 +0100
---- audio_common_patched/audio_common/audio_capture/launch/capture_wave.launch	2018-08-23 10:52:16.592463325 +0200
+--- audio_common_patched/audio_common/audio_capture/launch/capture_wave.launch	2018-08-23 13:54:09.527511343 +0200
 ***************
 *** 0 ****
 --- 1,13 ----
@@ -909,243 +870,10 @@ diff -crB --new-file audio_common/audio_common/audio_capture/package.xml audio_c
 + </package>
 diff -crB --new-file audio_common/audio_common/audio_capture/src/audio_capture.cpp audio_common_patched/audio_common/audio_capture/src/audio_capture.cpp
 *** audio_common/audio_common/audio_capture/src/audio_capture.cpp	1970-01-01 01:00:00.000000000 +0100
---- audio_common_patched/audio_common/audio_capture/src/audio_capture.cpp	2018-08-23 11:59:27.870786800 +0200
+--- audio_common_patched/audio_common/audio_capture/src/audio_capture.cpp	2018-08-23 14:03:54.560401503 +0200
 ***************
 *** 0 ****
---- 1,227 ----
-+ #include <stdio.h>
-+ #include <gst/gst.h>
-+ #include <gst/app/gstappsink.h>
-+ #include <boost/thread.hpp>
-+ 
-+ #include <ros/ros.h>
-+ 
-+ #include "audio_common_msgs/AudioData.h"
-+ 
-+ namespace audio_transport
-+ {
-+   class RosGstCapture
-+   {
-+     public:
-+       RosGstCapture()
-+       {
-+         _bitrate = 192;
-+ 
-+         std::string dst_type;
-+ 
-+         // Need to encoding or publish raw wave data
-+         ros::param::param<std::string>("~format", _format, "mp3");
-+ 
-+         // The bitrate at which to encode the audio
-+         ros::param::param<int>("~bitrate", _bitrate, 192);
-+ 
-+         // only available for raw data
-+         ros::param::param<int>("~channels", _channels, 1);
-+         ros::param::param<int>("~depth", _depth, 16);
-+         ros::param::param<int>("~sample_rate", _sample_rate, 16000);
-+ 
-+         // The destination of the audio
-+         ros::param::param<std::string>("~dst", dst_type, "appsink");
-+ 
-+         // The source of the audio
-+         //ros::param::param<std::string>("~src", source_type, "alsasrc");
-+         std::string device;
-+         ros::param::param<std::string>("~device", device, "");
-+ 
-+         _pub = _nh.advertise<audio_common_msgs::AudioData>("audio", 10, true);
-+ 
-+         _loop = g_main_loop_new(NULL, false);
-+         _pipeline = gst_pipeline_new("ros_pipeline");
-+         _bus = gst_pipeline_get_bus(GST_PIPELINE(_pipeline));
-+         gst_bus_add_signal_watch(_bus);
-+         g_signal_connect(_bus, "message::error",
-+                          G_CALLBACK(onMessage), this);
-+         g_object_unref(_bus);
-+ 
-+         // We create the sink first, just for convenience
-+         if (dst_type == "appsink")
-+         {
-+           _sink = gst_element_factory_make("appsink", "sink");
-+           g_object_set(G_OBJECT(_sink), "emit-signals", true, NULL);
-+           g_object_set(G_OBJECT(_sink), "max-buffers", 100, NULL);
-+           g_signal_connect( G_OBJECT(_sink), "new-sample",
-+                             G_CALLBACK(onNewBuffer), this);
-+         }
-+         else
-+         {
-+           printf("file sink\n");
-+           _sink = gst_element_factory_make("filesink", "sink");
-+           g_object_set( G_OBJECT(_sink), "location", dst_type.c_str(), NULL);
-+         }
-+ 
-+         _source = gst_element_factory_make("alsasrc", "source");
-+         // if device isn't specified, it will use the default which is
-+         // the alsa default source.
-+         // A valid device will be of the foram hw:0,0 with other numbers
-+         // than 0 and 0 as are available.
-+         if (device != "")
-+         {
-+           // ghcar *gst_device = device.c_str();
-+           g_object_set(G_OBJECT(_source), "device", device.c_str(), NULL);
-+         }
-+ 
-+         _filter = gst_element_factory_make("capsfilter", "filter");
-+         {
-+           GstCaps *caps;
-+           caps = gst_caps_new_simple("audio/x-raw",
-+                         //      "channels", G_TYPE_INT, _channels,
-+                         //      "depth",    G_TYPE_INT, _depth,
-+                               "rate",     G_TYPE_INT, _sample_rate,
-+                         //       "signed",   G_TYPE_BOOLEAN, TRUE,
-+                               NULL);
-+           g_object_set( G_OBJECT(_filter), "caps", caps, NULL);
-+           gst_caps_unref(caps);
-+         }
-+ 
-+         _convert = gst_element_factory_make("audioconvert", "convert");
-+         if (!_convert) {
-+       	  ROS_ERROR_STREAM("Failed to create audioconvert element");
-+       	  exitOnMainThread(1);
-+         }
-+ 
-+         gboolean link_ok;
-+ 
-+         if (_format == "mp3"){
-+           _encode = gst_element_factory_make("lamemp3enc", "encoder");
-+           if (!_encode) {
-+         	  ROS_ERROR_STREAM("Failed to create encoder element");
-+         	  exitOnMainThread(1);
-+           }
-+           g_object_set( G_OBJECT(_encode), "quality", 2.0, NULL);
-+           g_object_set( G_OBJECT(_encode), "bitrate", _bitrate, NULL);
-+ 
-+           gst_bin_add_many( GST_BIN(_pipeline), _source, _filter, _convert, _encode, _sink, NULL);
-+           link_ok = gst_element_link_many(_source, _filter, _convert, _encode, _sink, NULL);
-+         } else if (_format == "wave") {
-+           GstCaps *caps;
-+           caps = gst_caps_new_simple("audio/x-raw",
-+                                      "channels", G_TYPE_INT, _channels,
-+                                      "width",    G_TYPE_INT, _depth,
-+                                      "depth",    G_TYPE_INT, _depth,
-+                                      "rate",     G_TYPE_INT, _sample_rate,
-+                                      "signed",   G_TYPE_BOOLEAN, TRUE,
-+                                      NULL);
-+ 
-+           g_object_set( G_OBJECT(_sink), "caps", caps, NULL);
-+           gst_caps_unref(caps);
-+           gst_bin_add_many( GST_BIN(_pipeline), _source, _sink, NULL);
-+           link_ok = gst_element_link_many( _source, _sink, NULL);
-+         } else {
-+           ROS_ERROR_STREAM("format must be \"wave\" or \"mp3\"");
-+           exitOnMainThread(1);
-+         }
-+         /*}
-+         else
-+         {
-+           _sleep_time = 10000;
-+           _source = gst_element_factory_make("filesrc", "source");
-+           g_object_set(G_OBJECT(_source), "location", source_type.c_str(), NULL);
-+ 
-+           gst_bin_add_many( GST_BIN(_pipeline), _source, _sink, NULL);
-+           gst_element_link_many(_source, _sink, NULL);
-+         }
-+         */
-+ 
-+         if (!link_ok) {
-+           ROS_ERROR_STREAM("Unsupported media type.");
-+           exitOnMainThread(1);
-+         }
-+ 
-+         gst_element_set_state(GST_ELEMENT(_pipeline), GST_STATE_PLAYING);
-+ 
-+         _gst_thread = boost::thread( boost::bind(g_main_loop_run, _loop) );
-+       }
-+ 
-+       ~RosGstCapture()
-+       {
-+         g_main_loop_quit(_loop);
-+         gst_element_set_state(_pipeline, GST_STATE_NULL);
-+         gst_object_unref(_pipeline);
-+         g_main_loop_unref(_loop);
-+       }
-+ 
-+       void exitOnMainThread(int code)
-+       {
-+         exit(code);
-+       }
-+ 
-+       void publish( const audio_common_msgs::AudioData &msg )
-+       {
-+         _pub.publish(msg);
-+       }
-+ 
-+       static GstFlowReturn onNewBuffer (GstAppSink *appsink, gpointer userData)
-+       {
-+         RosGstCapture *server = reinterpret_cast<RosGstCapture*>(userData);
-+         GstMapInfo map;
-+ 
-+         GstSample *sample;
-+         g_signal_emit_by_name(appsink, "pull-sample", &sample);
-+ 
-+         GstBuffer *buffer = gst_sample_get_buffer(sample);
-+ 
-+         audio_common_msgs::AudioData msg;
-+         gst_buffer_map(buffer, &map, GST_MAP_READ);
-+         msg.data.resize( map.size );
-+ 
-+         memcpy( &msg.data[0], map.data, map.size );
-+ 
-+         gst_buffer_unmap(buffer, &map);
-+         gst_sample_unref(sample);
-+ 
-+         server->publish(msg);
-+ 
-+         return GST_FLOW_OK;
-+       }
-+ 
-+       static gboolean onMessage (GstBus *bus, GstMessage *message, gpointer userData)
-+       {
-+         RosGstCapture *server = reinterpret_cast<RosGstCapture*>(userData);
-+         GError *err;
-+         gchar *debug;
-+ 
-+         gst_message_parse_error(message, &err, &debug);
-+         ROS_ERROR_STREAM("gstreamer: " << err->message);
-+         g_error_free(err);
-+         g_free(debug);
-+         g_main_loop_quit(server->_loop);
-+         server->exitOnMainThread(1);
-+         return FALSE;
-+       }
-+ 
-+     private:
-+       ros::NodeHandle _nh;
-+       ros::Publisher _pub;
-+ 
-+       boost::thread _gst_thread;
-+ 
-+       GstElement *_pipeline, *_source, *_filter, *_sink, *_convert, *_encode;
-+       GstBus *_bus;
-+       int _bitrate, _channels, _depth, _sample_rate;
-+       GMainLoop *_loop;
-+       std::string _format;
-+   };
-+ }
-+ 
-+ int main (int argc, char **argv)
-+ {
-+   ros::init(argc, argv, "audio_capture");
-+   gst_init(&argc, &argv);
-+ 
-+   audio_transport::RosGstCapture server;
-+   ros::spin();
-+ }
-diff -crB --new-file audio_common/audio_common/audio_capture/src/audiostampedraw_capture.cpp audio_common_patched/audio_common/audio_capture/src/audiostampedraw_capture.cpp
-*** audio_common/audio_common/audio_capture/src/audiostampedraw_capture.cpp	1970-01-01 01:00:00.000000000 +0100
---- audio_common_patched/audio_common/audio_capture/src/audiostampedraw_capture.cpp	2018-08-23 12:36:16.148751602 +0200
-***************
-*** 0 ****
---- 1,231 ----
+--- 1,230 ----
 + #include <stdio.h>
 + #include <gst/gst.h>
 + #include <gst/app/gstappsink.h>
@@ -1323,12 +1051,11 @@ diff -crB --new-file audio_common/audio_common/audio_capture/src/audiostampedraw
 +         GstBuffer *buffer = gst_sample_get_buffer(sample);
 + 
 +         audio_common_msgs::AudioDataStampedRaw msg;
-+         gst_buffer_map(buffer, &map, GST_MAP_READ);
-+         msg.data.resize( map.size );
-+         
 +         // add timestamp to header
 +         msg.header.stamp = ros::Time::now();
 + 
++         gst_buffer_map(buffer, &map, GST_MAP_READ);
++         msg.data.resize( map.size );
 + 
 +         memcpy( &msg.data[0], map.data, map.size );
 + 
@@ -2032,7 +1759,7 @@ diff -crB --new-file audio_common/audio_common/audio_play/src/audio_play.cpp aud
 +   ros::spin();
 + }
 diff -crB --new-file audio_common/audio_common/CHANGELOG.rst audio_common_patched/audio_common/CHANGELOG.rst
-*** audio_common/audio_common/CHANGELOG.rst	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common/CHANGELOG.rst	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common/CHANGELOG.rst	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,67 ****
@@ -2105,7 +1832,7 @@ diff -crB --new-file audio_common/audio_common/CHANGELOG.rst audio_common_patche
 - * Contributors: Austin Hendrix
 --- 0 ----
 diff -crB --new-file audio_common/audio_common/CMakeLists.txt audio_common_patched/audio_common/CMakeLists.txt
-*** audio_common/audio_common/CMakeLists.txt	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common/CMakeLists.txt	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,4 ****
@@ -2796,7 +2523,7 @@ diff -crB --new-file audio_common/audio_common/.gitignore audio_common_patched/a
 --- 1 ----
 + *.pyc
 diff -crB --new-file audio_common/audio_common/package.xml audio_common_patched/audio_common/package.xml
-*** audio_common/audio_common/package.xml	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common/package.xml	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common/package.xml	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,24 ****
@@ -5547,7 +5274,7 @@ diff -crB --new-file audio_common/audio_common/sound_play/test.launch audio_comm
 +   <node name="sound_test" pkg="sound_play" type="test.py"/>
 + </launch>
 diff -crB --new-file audio_common/audio_common_msgs/CHANGELOG.rst audio_common_patched/audio_common_msgs/CHANGELOG.rst
-*** audio_common/audio_common_msgs/CHANGELOG.rst	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common_msgs/CHANGELOG.rst	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common_msgs/CHANGELOG.rst	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,68 ****
@@ -5621,7 +5348,7 @@ diff -crB --new-file audio_common/audio_common_msgs/CHANGELOG.rst audio_common_p
 - * Contributors: Austin Hendrix, Nate Koenig
 --- 0 ----
 diff -crB --new-file audio_common/audio_common_msgs/CMakeLists.txt audio_common_patched/audio_common_msgs/CMakeLists.txt
-*** audio_common/audio_common_msgs/CMakeLists.txt	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common_msgs/CMakeLists.txt	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common_msgs/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,9 ****
@@ -5636,14 +5363,14 @@ diff -crB --new-file audio_common/audio_common_msgs/CMakeLists.txt audio_common_
 - catkin_package(CATKIN_DEPENDS message_runtime)
 --- 0 ----
 diff -crB --new-file audio_common/audio_common_msgs/.gitignore audio_common_patched/audio_common_msgs/.gitignore
-*** audio_common/audio_common_msgs/.gitignore	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common_msgs/.gitignore	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common_msgs/.gitignore	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - build
 --- 0 ----
 diff -crB --new-file audio_common/audio_common_msgs/mainpage.dox audio_common_patched/audio_common_msgs/mainpage.dox
-*** audio_common/audio_common_msgs/mainpage.dox	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common_msgs/mainpage.dox	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common_msgs/mainpage.dox	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,11 ****
@@ -5660,14 +5387,14 @@ diff -crB --new-file audio_common/audio_common_msgs/mainpage.dox audio_common_pa
 - */
 --- 0 ----
 diff -crB --new-file audio_common/audio_common_msgs/msg/AudioData.msg audio_common_patched/audio_common_msgs/msg/AudioData.msg
-*** audio_common/audio_common_msgs/msg/AudioData.msg	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common_msgs/msg/AudioData.msg	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common_msgs/msg/AudioData.msg	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - uint8[] data
 --- 0 ----
 diff -crB --new-file audio_common/audio_common_msgs/package.xml audio_common_patched/audio_common_msgs/package.xml
-*** audio_common/audio_common_msgs/package.xml	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_common_msgs/package.xml	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_common_msgs/package.xml	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,19 ****
@@ -5692,7 +5419,7 @@ diff -crB --new-file audio_common/audio_common_msgs/package.xml audio_common_pat
 - </package>
 --- 0 ----
 diff -crB --new-file audio_common/audio_play/CHANGELOG.rst audio_common_patched/audio_play/CHANGELOG.rst
-*** audio_common/audio_play/CHANGELOG.rst	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_play/CHANGELOG.rst	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_play/CHANGELOG.rst	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,121 ****
@@ -5819,7 +5546,7 @@ diff -crB --new-file audio_common/audio_play/CHANGELOG.rst audio_common_patched/
 - * Contributors: Austin Hendrix, Brian Gerkey, Nate Koenig, nkoenig
 --- 0 ----
 diff -crB --new-file audio_common/audio_play/CMakeLists.txt audio_common_patched/audio_play/CMakeLists.txt
-*** audio_common/audio_play/CMakeLists.txt	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_play/CMakeLists.txt	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_play/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,24 ****
@@ -5849,14 +5576,14 @@ diff -crB --new-file audio_common/audio_play/CMakeLists.txt audio_common_patched
 -    DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 --- 0 ----
 diff -crB --new-file audio_common/audio_play/.gitignore audio_common_patched/audio_play/.gitignore
-*** audio_common/audio_play/.gitignore	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_play/.gitignore	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_play/.gitignore	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - build
 --- 0 ----
 diff -crB --new-file audio_common/audio_play/launch/play.launch audio_common_patched/audio_play/launch/play.launch
-*** audio_common/audio_play/launch/play.launch	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_play/launch/play.launch	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_play/launch/play.launch	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,10 ****
@@ -5872,7 +5599,7 @@ diff -crB --new-file audio_common/audio_play/launch/play.launch audio_common_pat
 - </launch>
 --- 0 ----
 diff -crB --new-file audio_common/audio_play/mainpage.dox audio_common_patched/audio_play/mainpage.dox
-*** audio_common/audio_play/mainpage.dox	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_play/mainpage.dox	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_play/mainpage.dox	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,22 ****
@@ -5900,7 +5627,7 @@ diff -crB --new-file audio_common/audio_play/mainpage.dox audio_common_patched/a
 - */
 --- 0 ----
 diff -crB --new-file audio_common/audio_play/package.xml audio_common_patched/audio_play/package.xml
-*** audio_common/audio_play/package.xml	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_play/package.xml	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/audio_play/package.xml	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,30 ****
@@ -5936,7 +5663,7 @@ diff -crB --new-file audio_common/audio_play/package.xml audio_common_patched/au
 - 
 --- 0 ----
 diff -crB --new-file audio_common/audio_play/src/audio_play.cpp audio_common_patched/audio_play/src/audio_play.cpp
-*** audio_common/audio_play/src/audio_play.cpp	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/audio_play/src/audio_play.cpp	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/audio_play/src/audio_play.cpp	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,134 ****
@@ -6076,7 +5803,7 @@ diff -crB --new-file audio_common/audio_play/src/audio_play.cpp audio_common_pat
 - }
 --- 0 ----
 diff -crB --new-file audio_common/.git/config audio_common_patched/.git/config
-*** audio_common/.git/config	2018-08-23 13:13:41.193196416 +0200
+*** audio_common/.git/config	2018-08-23 14:09:50.376914922 +0200
 --- audio_common_patched/.git/config	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,11 ****
@@ -6093,21 +5820,21 @@ diff -crB --new-file audio_common/.git/config audio_common_patched/.git/config
 - 	merge = refs/heads/master
 --- 0 ----
 diff -crB --new-file audio_common/.git/description audio_common_patched/.git/description
-*** audio_common/.git/description	2018-08-23 13:13:38.161259332 +0200
+*** audio_common/.git/description	2018-08-23 14:09:47.648985084 +0200
 --- audio_common_patched/.git/description	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - Unnamed repository; edit this file 'description' to name the repository.
 --- 0 ----
 diff -crB --new-file audio_common/.git/HEAD audio_common_patched/.git/HEAD
-*** audio_common/.git/HEAD	2018-08-23 13:13:41.193196416 +0200
+*** audio_common/.git/HEAD	2018-08-23 14:09:50.376914922 +0200
 --- audio_common_patched/.git/HEAD	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - ref: refs/heads/master
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/applypatch-msg.sample audio_common_patched/.git/hooks/applypatch-msg.sample
-*** audio_common/.git/hooks/applypatch-msg.sample	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/hooks/applypatch-msg.sample	2018-08-23 14:09:47.644985187 +0200
 --- audio_common_patched/.git/hooks/applypatch-msg.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,15 ****
@@ -6128,7 +5855,7 @@ diff -crB --new-file audio_common/.git/hooks/applypatch-msg.sample audio_common_
 - :
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/commit-msg.sample audio_common_patched/.git/hooks/commit-msg.sample
-*** audio_common/.git/hooks/commit-msg.sample	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/hooks/commit-msg.sample	2018-08-23 14:09:47.644985187 +0200
 --- audio_common_patched/.git/hooks/commit-msg.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,24 ****
@@ -6158,7 +5885,7 @@ diff -crB --new-file audio_common/.git/hooks/commit-msg.sample audio_common_patc
 - }
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/post-update.sample audio_common_patched/.git/hooks/post-update.sample
-*** audio_common/.git/hooks/post-update.sample	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/hooks/post-update.sample	2018-08-23 14:09:47.644985187 +0200
 --- audio_common_patched/.git/hooks/post-update.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,8 ****
@@ -6172,7 +5899,7 @@ diff -crB --new-file audio_common/.git/hooks/post-update.sample audio_common_pat
 - exec git update-server-info
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/pre-applypatch.sample audio_common_patched/.git/hooks/pre-applypatch.sample
-*** audio_common/.git/hooks/pre-applypatch.sample	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/hooks/pre-applypatch.sample	2018-08-23 14:09:47.644985187 +0200
 --- audio_common_patched/.git/hooks/pre-applypatch.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,14 ****
@@ -6192,7 +5919,7 @@ diff -crB --new-file audio_common/.git/hooks/pre-applypatch.sample audio_common_
 - :
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/pre-commit.sample audio_common_patched/.git/hooks/pre-commit.sample
-*** audio_common/.git/hooks/pre-commit.sample	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/hooks/pre-commit.sample	2018-08-23 14:09:47.644985187 +0200
 --- audio_common_patched/.git/hooks/pre-commit.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,49 ****
@@ -6247,7 +5974,7 @@ diff -crB --new-file audio_common/.git/hooks/pre-commit.sample audio_common_patc
 - exec git diff-index --check --cached $against --
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/prepare-commit-msg.sample audio_common_patched/.git/hooks/prepare-commit-msg.sample
-*** audio_common/.git/hooks/prepare-commit-msg.sample	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/hooks/prepare-commit-msg.sample	2018-08-23 14:09:47.648985084 +0200
 --- audio_common_patched/.git/hooks/prepare-commit-msg.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,36 ****
@@ -6289,7 +6016,7 @@ diff -crB --new-file audio_common/.git/hooks/prepare-commit-msg.sample audio_com
 - # grep -qs "^$SOB" "$1" || echo "$SOB" >> "$1"
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/pre-push.sample audio_common_patched/.git/hooks/pre-push.sample
-*** audio_common/.git/hooks/pre-push.sample	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/hooks/pre-push.sample	2018-08-23 14:09:47.644985187 +0200
 --- audio_common_patched/.git/hooks/pre-push.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,53 ****
@@ -6348,7 +6075,7 @@ diff -crB --new-file audio_common/.git/hooks/pre-push.sample audio_common_patche
 - exit 0
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/pre-rebase.sample audio_common_patched/.git/hooks/pre-rebase.sample
-*** audio_common/.git/hooks/pre-rebase.sample	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/hooks/pre-rebase.sample	2018-08-23 14:09:47.644985187 +0200
 --- audio_common_patched/.git/hooks/pre-rebase.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,169 ****
@@ -6523,7 +6250,7 @@ diff -crB --new-file audio_common/.git/hooks/pre-rebase.sample audio_common_patc
 - DOC_END
 --- 0 ----
 diff -crB --new-file audio_common/.git/hooks/update.sample audio_common_patched/.git/hooks/update.sample
-*** audio_common/.git/hooks/update.sample	2018-08-23 13:13:38.161259332 +0200
+*** audio_common/.git/hooks/update.sample	2018-08-23 14:09:47.648985084 +0200
 --- audio_common_patched/.git/hooks/update.sample	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,128 ****
@@ -6658,7 +6385,7 @@ diff -crB --new-file audio_common/.git/hooks/update.sample audio_common_patched/
 --- 0 ----
 Binary files audio_common/.git/index and audio_common_patched/.git/index differ
 diff -crB --new-file audio_common/.git/info/exclude audio_common_patched/.git/info/exclude
-*** audio_common/.git/info/exclude	2018-08-23 13:13:38.157259415 +0200
+*** audio_common/.git/info/exclude	2018-08-23 14:09:47.644985187 +0200
 --- audio_common_patched/.git/info/exclude	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,6 ****
@@ -6670,30 +6397,30 @@ diff -crB --new-file audio_common/.git/info/exclude audio_common_patched/.git/in
 - # *~
 --- 0 ----
 diff -crB --new-file audio_common/.git/logs/HEAD audio_common_patched/.git/logs/HEAD
-*** audio_common/.git/logs/HEAD	2018-08-23 13:13:41.193196416 +0200
+*** audio_common/.git/logs/HEAD	2018-08-23 14:09:50.376914922 +0200
 --- audio_common_patched/.git/logs/HEAD	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
-- 0000000000000000000000000000000000000000 e2c2b058220581e1b7fb81142ec8d36193f7e07f Patrick Koch <p.koch@tum.de> 1535022821 +0200	clone: from https://github.com/ros-drivers/audio_common.git
+- 0000000000000000000000000000000000000000 e2c2b058220581e1b7fb81142ec8d36193f7e07f Patrick Koch <p.koch@tum.de> 1535026190 +0200	clone: from https://github.com/ros-drivers/audio_common.git
 --- 0 ----
 diff -crB --new-file audio_common/.git/logs/refs/heads/master audio_common_patched/.git/logs/refs/heads/master
-*** audio_common/.git/logs/refs/heads/master	2018-08-23 13:13:41.193196416 +0200
+*** audio_common/.git/logs/refs/heads/master	2018-08-23 14:09:50.376914922 +0200
 --- audio_common_patched/.git/logs/refs/heads/master	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
-- 0000000000000000000000000000000000000000 e2c2b058220581e1b7fb81142ec8d36193f7e07f Patrick Koch <p.koch@tum.de> 1535022821 +0200	clone: from https://github.com/ros-drivers/audio_common.git
+- 0000000000000000000000000000000000000000 e2c2b058220581e1b7fb81142ec8d36193f7e07f Patrick Koch <p.koch@tum.de> 1535026190 +0200	clone: from https://github.com/ros-drivers/audio_common.git
 --- 0 ----
 diff -crB --new-file audio_common/.git/logs/refs/remotes/origin/HEAD audio_common_patched/.git/logs/refs/remotes/origin/HEAD
-*** audio_common/.git/logs/refs/remotes/origin/HEAD	2018-08-23 13:13:41.193196416 +0200
+*** audio_common/.git/logs/refs/remotes/origin/HEAD	2018-08-23 14:09:50.376914922 +0200
 --- audio_common_patched/.git/logs/refs/remotes/origin/HEAD	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
-- 0000000000000000000000000000000000000000 e2c2b058220581e1b7fb81142ec8d36193f7e07f Patrick Koch <p.koch@tum.de> 1535022821 +0200	clone: from https://github.com/ros-drivers/audio_common.git
+- 0000000000000000000000000000000000000000 e2c2b058220581e1b7fb81142ec8d36193f7e07f Patrick Koch <p.koch@tum.de> 1535026190 +0200	clone: from https://github.com/ros-drivers/audio_common.git
 --- 0 ----
 Binary files audio_common/.git/objects/pack/pack-1ff849ef2aa07b8478b30661a122ceb8eba5c7ad.idx and audio_common_patched/.git/objects/pack/pack-1ff849ef2aa07b8478b30661a122ceb8eba5c7ad.idx differ
 Binary files audio_common/.git/objects/pack/pack-1ff849ef2aa07b8478b30661a122ceb8eba5c7ad.pack and audio_common_patched/.git/objects/pack/pack-1ff849ef2aa07b8478b30661a122ceb8eba5c7ad.pack differ
 diff -crB --new-file audio_common/.git/packed-refs audio_common_patched/.git/packed-refs
-*** audio_common/.git/packed-refs	2018-08-23 13:13:41.189196499 +0200
+*** audio_common/.git/packed-refs	2018-08-23 14:09:50.372915024 +0200
 --- audio_common_patched/.git/packed-refs	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,37 ****
@@ -6736,28 +6463,28 @@ diff -crB --new-file audio_common/.git/packed-refs audio_common_patched/.git/pac
 - be8843dba471b6f87fd32ac379dde14439ed3504 refs/tags/unstable
 --- 0 ----
 diff -crB --new-file audio_common/.git/refs/heads/master audio_common_patched/.git/refs/heads/master
-*** audio_common/.git/refs/heads/master	2018-08-23 13:13:41.193196416 +0200
+*** audio_common/.git/refs/heads/master	2018-08-23 14:09:50.376914922 +0200
 --- audio_common_patched/.git/refs/heads/master	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - e2c2b058220581e1b7fb81142ec8d36193f7e07f
 --- 0 ----
 diff -crB --new-file audio_common/.git/refs/remotes/origin/HEAD audio_common_patched/.git/refs/remotes/origin/HEAD
-*** audio_common/.git/refs/remotes/origin/HEAD	2018-08-23 13:13:41.193196416 +0200
+*** audio_common/.git/refs/remotes/origin/HEAD	2018-08-23 14:09:50.376914922 +0200
 --- audio_common_patched/.git/refs/remotes/origin/HEAD	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - ref: refs/remotes/origin/master
 --- 0 ----
 diff -crB --new-file audio_common/.gitignore audio_common_patched/.gitignore
-*** audio_common/.gitignore	2018-08-23 13:13:41.241195420 +0200
+*** audio_common/.gitignore	2018-08-23 14:09:50.420913791 +0200
 --- audio_common_patched/.gitignore	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1 ****
 - *.pyc
 --- 0 ----
 diff -crB --new-file audio_common/README.md audio_common_patched/README.md
-*** audio_common/README.md	2018-08-23 13:13:41.241195420 +0200
+*** audio_common/README.md	2018-08-23 14:09:50.424913688 +0200
 --- audio_common_patched/README.md	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,27 ****
@@ -6790,7 +6517,7 @@ diff -crB --new-file audio_common/README.md audio_common_patched/README.md
 - Large, breaking changes such as changes to dependencies or the package API will be considered, but they will probably be staged into a development branch for release into the next major release of ROS (ROS L)
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/action/SoundRequest.action audio_common_patched/sound_play/action/SoundRequest.action
-*** audio_common/sound_play/action/SoundRequest.action	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/sound_play/action/SoundRequest.action	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/action/SoundRequest.action	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,7 ****
@@ -6804,7 +6531,7 @@ diff -crB --new-file audio_common/sound_play/action/SoundRequest.action audio_co
 \ No newline at end of file
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/CHANGELOG.rst audio_common_patched/sound_play/CHANGELOG.rst
-*** audio_common/sound_play/CHANGELOG.rst	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/sound_play/CHANGELOG.rst	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/CHANGELOG.rst	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,245 ****
@@ -7055,7 +6782,7 @@ diff -crB --new-file audio_common/sound_play/CHANGELOG.rst audio_common_patched/
 - * Contributors: Austin Hendrix, Nate Koenig, blaise, blaisegassend, eitan, gerkey, kwc, nkoenig, watts, wheeler
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/CMakeLists.txt audio_common_patched/sound_play/CMakeLists.txt
-*** audio_common/sound_play/CMakeLists.txt	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/sound_play/CMakeLists.txt	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,44 ****
@@ -7105,7 +6832,7 @@ diff -crB --new-file audio_common/sound_play/CMakeLists.txt audio_common_patched
 -         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/include/sound_play/sound_play.h audio_common_patched/sound_play/include/sound_play/sound_play.h
-*** audio_common/sound_play/include/sound_play/sound_play.h	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/include/sound_play/sound_play.h	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/include/sound_play/sound_play.h	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,410 ****
@@ -7521,7 +7248,7 @@ diff -crB --new-file audio_common/sound_play/include/sound_play/sound_play.h aud
 - #endif
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/mainpage.dox audio_common_patched/sound_play/mainpage.dox
-*** audio_common/sound_play/mainpage.dox	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/mainpage.dox	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/mainpage.dox	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,23 ****
@@ -7550,7 +7277,7 @@ diff -crB --new-file audio_common/sound_play/mainpage.dox audio_common_patched/s
 - */
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/msg/SoundRequest.msg audio_common_patched/sound_play/msg/SoundRequest.msg
-*** audio_common/sound_play/msg/SoundRequest.msg	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/msg/SoundRequest.msg	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/msg/SoundRequest.msg	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,30 ****
@@ -7586,7 +7313,7 @@ diff -crB --new-file audio_common/sound_play/msg/SoundRequest.msg audio_common_p
 - string arg2 # other arguments
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/package.xml audio_common_patched/sound_play/package.xml
-*** audio_common/sound_play/package.xml	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/package.xml	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/package.xml	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,43 ****
@@ -7635,7 +7362,7 @@ diff -crB --new-file audio_common/sound_play/package.xml audio_common_patched/so
 - </package>
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/README.md audio_common_patched/sound_play/README.md
-*** audio_common/sound_play/README.md	2018-08-23 13:13:41.245195337 +0200
+*** audio_common/sound_play/README.md	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/README.md	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,67 ****
@@ -7708,7 +7435,7 @@ diff -crB --new-file audio_common/sound_play/README.md audio_common_patched/soun
 - 
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/playbuiltin.py audio_common_patched/sound_play/scripts/playbuiltin.py
-*** audio_common/sound_play/scripts/playbuiltin.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/playbuiltin.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/playbuiltin.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,65 ****
@@ -7779,7 +7506,7 @@ diff -crB --new-file audio_common/sound_play/scripts/playbuiltin.py audio_common
 -     rospy.sleep(1)
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/playpackage.py audio_common_patched/sound_play/scripts/playpackage.py
-*** audio_common/sound_play/scripts/playpackage.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/playpackage.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/playpackage.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,62 ****
@@ -7847,7 +7574,7 @@ diff -crB --new-file audio_common/sound_play/scripts/playpackage.py audio_common
 -     rospy.sleep(1)
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/play.py audio_common_patched/sound_play/scripts/play.py
-*** audio_common/sound_play/scripts/play.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/play.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/play.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,63 ****
@@ -7916,7 +7643,7 @@ diff -crB --new-file audio_common/sound_play/scripts/play.py audio_common_patche
 -     rospy.sleep(1)
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/say.py audio_common_patched/sound_play/scripts/say.py
-*** audio_common/sound_play/scripts/say.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/say.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/say.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,83 ****
@@ -8005,7 +7732,7 @@ diff -crB --new-file audio_common/sound_play/scripts/say.py audio_common_patched
 -     rospy.sleep(1)
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/shutup.py audio_common_patched/sound_play/scripts/shutup.py
-*** audio_common/sound_play/scripts/shutup.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/shutup.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/shutup.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,59 ****
@@ -8070,7 +7797,7 @@ diff -crB --new-file audio_common/sound_play/scripts/shutup.py audio_common_patc
 -             pass
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/soundclient_example.py audio_common_patched/sound_play/scripts/soundclient_example.py
-*** audio_common/sound_play/scripts/soundclient_example.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/soundclient_example.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/soundclient_example.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,91 ****
@@ -8167,7 +7894,7 @@ diff -crB --new-file audio_common/sound_play/scripts/soundclient_example.py audi
 -     rospy.loginfo('Finished')
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/soundplay_node.py audio_common_patched/sound_play/scripts/soundplay_node.py
-*** audio_common/sound_play/scripts/soundplay_node.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/soundplay_node.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/soundplay_node.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,468 ****
@@ -8641,7 +8368,7 @@ diff -crB --new-file audio_common/sound_play/scripts/soundplay_node.py audio_com
 -     soundplay()
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/test/test_sound_client.py audio_common_patched/sound_play/scripts/test/test_sound_client.py
-*** audio_common/sound_play/scripts/test/test_sound_client.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/test/test_sound_client.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/test/test_sound_client.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,17 ****
@@ -8664,7 +8391,7 @@ diff -crB --new-file audio_common/sound_play/scripts/test/test_sound_client.py a
 - __author__ = 'Felix Duvallet'
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/test_actionlib_client.py audio_common_patched/sound_play/scripts/test_actionlib_client.py
-*** audio_common/sound_play/scripts/test_actionlib_client.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/test_actionlib_client.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/test_actionlib_client.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,64 ****
@@ -8734,7 +8461,7 @@ diff -crB --new-file audio_common/sound_play/scripts/test_actionlib_client.py au
 -     sound_play_client()
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/scripts/test.py audio_common_patched/sound_play/scripts/test.py
-*** audio_common/sound_play/scripts/test.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/scripts/test.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/scripts/test.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,129 ****
@@ -8869,7 +8596,7 @@ diff -crB --new-file audio_common/sound_play/scripts/test.py audio_common_patche
 -     s3.stop()
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/setup.py audio_common_patched/sound_play/setup.py
-*** audio_common/sound_play/setup.py	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/setup.py	2018-08-23 14:09:50.428913585 +0200
 --- audio_common_patched/sound_play/setup.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,11 ****
@@ -8886,7 +8613,7 @@ diff -crB --new-file audio_common/sound_play/setup.py audio_common_patched/sound
 - setup(**d)
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/soundplay_node.launch audio_common_patched/sound_play/soundplay_node.launch
-*** audio_common/sound_play/soundplay_node.launch	2018-08-23 13:13:41.249195254 +0200
+*** audio_common/sound_play/soundplay_node.launch	2018-08-23 14:09:50.432913483 +0200
 --- audio_common_patched/sound_play/soundplay_node.launch	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,11 ****
@@ -8909,7 +8636,7 @@ Binary files audio_common/sound_play/sounds/NEEDS_UNPLUGGING_BADLY.ogg and audio
 Binary files audio_common/sound_play/sounds/NEEDS_UNPLUGGING.ogg and audio_common_patched/sound_play/sounds/NEEDS_UNPLUGGING.ogg differ
 Binary files audio_common/sound_play/sounds/say-beep.wav and audio_common_patched/sound_play/sounds/say-beep.wav differ
 diff -crB --new-file audio_common/sound_play/src/sound_play/__init__.py audio_common_patched/sound_play/src/sound_play/__init__.py
-*** audio_common/sound_play/src/sound_play/__init__.py	2018-08-23 13:13:41.253195171 +0200
+*** audio_common/sound_play/src/sound_play/__init__.py	2018-08-23 14:09:50.436913380 +0200
 --- audio_common_patched/sound_play/src/sound_play/__init__.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,33 ****
@@ -8948,7 +8675,7 @@ diff -crB --new-file audio_common/sound_play/src/sound_play/__init__.py audio_co
 - import libsoundplay as libsoundplay
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/src/sound_play/libsoundplay.py audio_common_patched/sound_play/src/sound_play/libsoundplay.py
-*** audio_common/sound_play/src/sound_play/libsoundplay.py	2018-08-23 13:13:41.253195171 +0200
+*** audio_common/sound_play/src/sound_play/libsoundplay.py	2018-08-23 14:09:50.436913380 +0200
 --- audio_common_patched/sound_play/src/sound_play/libsoundplay.py	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,346 ****
@@ -9300,7 +9027,7 @@ diff -crB --new-file audio_common/sound_play/src/sound_play/libsoundplay.py audi
 -         return
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/test/CMakeLists.txt audio_common_patched/sound_play/test/CMakeLists.txt
-*** audio_common/sound_play/test/CMakeLists.txt	2018-08-23 13:13:41.253195171 +0200
+*** audio_common/sound_play/test/CMakeLists.txt	2018-08-23 14:09:50.436913380 +0200
 --- audio_common_patched/sound_play/test/CMakeLists.txt	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,4 ****
@@ -9310,7 +9037,7 @@ diff -crB --new-file audio_common/sound_play/test/CMakeLists.txt audio_common_pa
 - set_target_properties(test_sound_play PROPERTIES OUTPUT_NAME test)
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/test/test.cpp audio_common_patched/sound_play/test/test.cpp
-*** audio_common/sound_play/test/test.cpp	2018-08-23 13:13:41.253195171 +0200
+*** audio_common/sound_play/test/test.cpp	2018-08-23 14:09:50.436913380 +0200
 --- audio_common_patched/sound_play/test/test.cpp	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,147 ****
@@ -9463,7 +9190,7 @@ diff -crB --new-file audio_common/sound_play/test/test.cpp audio_common_patched/
 - }
 --- 0 ----
 diff -crB --new-file audio_common/sound_play/test.launch audio_common_patched/sound_play/test.launch
-*** audio_common/sound_play/test.launch	2018-08-23 13:13:41.253195171 +0200
+*** audio_common/sound_play/test.launch	2018-08-23 14:09:50.436913380 +0200
 --- audio_common_patched/sound_play/test.launch	1970-01-01 01:00:00.000000000 +0100
 ***************
 *** 1,9 ****

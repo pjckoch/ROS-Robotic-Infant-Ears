@@ -6,7 +6,7 @@
   <arg name="sample_rate" default="48000"/>
   <arg name="depth" default="32"/>
 
-  <!--decide whether you want to perform fft on audio data-->
+  <!--decide whether you want to plot the data-->
   <arg name="plot" default="true"/>
 
   <include file="$(find audio_capture)/launch/capture_wave.launch">

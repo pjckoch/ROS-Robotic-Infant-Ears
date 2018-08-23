@@ -9,7 +9,7 @@
   <!--decide whether you want to perform fft on audio data-->
   <arg name="plot" default="true"/>
 
-  <include file="$(find audio_capture)/launch/capture_wave.launch">
+  <include file="$(find audio_capture)/launch/capture_stampedraw.launch">
     <arg name="device" value="$(arg device)"/>
     <arg name="channels" value="$(arg channels)"/>
     <arg name="sample_rate" value="$(arg sample_rate)"/>

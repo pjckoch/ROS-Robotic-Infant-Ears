@@ -60,6 +60,7 @@
   <depend>python-numpy</depend>
   <depend>python-scipy</depend>
   <depend>hark_msgs</depend>
+  <depend>roscpp</depend>
   <!--<depend>python-pyqtgraph</depend> -->
 
 		

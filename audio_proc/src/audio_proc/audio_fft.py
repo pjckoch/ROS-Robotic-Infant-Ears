@@ -53,10 +53,11 @@ class FourierTransform():
         self.fft=None
         self.freqs=None
         self.data=None # audio data
-        self.srate=None # sample rate
 
         rospy.init_node('fft')
         rospy.loginfo("FFT node running")
+
+        self.sample_rate = rospy.get_param("/sample_rate", 48000)
 
         self.pub=rospy.Publisher('fftData', FFTData, queue_size=5)
 
@@ -69,12 +70,14 @@ class FourierTransform():
         Note that there is no publishing rate specified since the rate is determined by the 
         incoming audio stream."""
         
-        # create timestamp with time from callback start
-        header = Header()
-        header.stamp = rospy.Time.now()
+        # copy header of subscribed message
+        header = msg.header
 
         self.data = np.frombuffer(msg.data, dtype=np.int16)
-        self.fft, self.freqs = getFFT(self.data, 48000)
+        self.fft, self.freqs = getFFT(self.data, self.sample_rate)
+
+        # timing analysis: end
+
         self.pub.publish(header, self.data, self.fft, self.freqs)
 
 

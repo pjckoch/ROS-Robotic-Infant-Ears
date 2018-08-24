@@ -6,6 +6,8 @@
   <arg name="sample_rate" default="48000"/>
   <arg name="depth" default="32"/>
 
+  <param name="sample_rate" value="$(arg sample_rate)"/>
+
   <!--decide whether you want to plot the data-->
   <arg name="plot" default="true"/>
 
@@ -26,7 +28,6 @@
      args="messages /fftData 30 /fftData_throttle/">
     </node>
     <node name="audio_plot" pkg="audio_proc" type="audio_plot.py" output="screen">
-      <param name="sample_rate" value="$(arg sample_rate)"/>
     </node>
   </group>
 

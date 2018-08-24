@@ -128,3 +128,11 @@ index eb8ff56..7147402 100644
 +include_directories(
 +  ${catkin_INCLUDE_DIRS}
 +)
+diff --git a/audio_common_msgs/msg/AudioDataStampedRaw.msg b/audio_common_msgs/msg/AudioDataStampedRaw.msg
+new file mode 100644
+index 0000000..3ac79e5
+--- /dev/null
++++ b/audio_common_msgs/msg/AudioDataStampedRaw.msg
+@@ -0,0 +1,2 @@
++std_msgs/Header header
++uint8[] data

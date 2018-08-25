@@ -213,10 +213,10 @@ class AudioDriver():
         """This function publishes the frame that slides along
         the two concatenating buffers.
         """
-        # if the index has reached a certain point,
-        # the first half of the array will have been overwritten
-        # with new data already, so we can go back to 0
-        if self.offset >= (self.pubRate/self.readrate) * self.stepsize:
+        # to prevent the frame slider from reaching an index out of bounds,
+        # we must set the offset index back to zero when it reaches
+        # half of the twobuff array
+        if self.offset >= len(self.twobuff)/2.0:
             self.offset = 0
         # slide frame along array twobuff
         self.slideframe = self.twobuff[self.offset:self.offset + self.chunk]

@@ -1,0 +1,17 @@
+<launch>
+  
+  <arg name="input_topic" default="/fftData"/>
+  <arg name="sample_rate" default="48000"/>
+  <arg name="throttle" default="true"/> 
+  <arg name="bandwidth" default="30"/> 
+ 
+  <group if="$(arg throttle)">
+    <node name="throttle" pkg="topic_tools" type="throttle"
+       args="messages $(arg input_topic) $(arg bandwidth)">
+    </node>
+  </group>
+
+  <node name="audio_plot" pkg="audio_proc" type="audio_plot.py" output="screen">
+    <param name="sample_rate" value="$(arg sample_rate)"/>
+  </node>
+</launch>

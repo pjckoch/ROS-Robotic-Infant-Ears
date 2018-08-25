@@ -1,38 +1,57 @@
 <launch>
 
-  <!--display available sound cards with arecord -l. Then specify device (e.g. 'hw:0,0'). If no device is specified, the driver will choose one. -->
+  <!--Choose between two audio drivers:-->
+  <!--1.: audio_capture from the audio_common package which uses gstreamer-->
+  <!--2.: audio_driver from the audio_proc package-->
+  <!--Note: the audio_common package driver would be preferable, but does not work on a Raspberry Pi as of now(2018-08-01)-->
+  <!--In case you want to use the audio_common driver, note that it is recommended to use a timestamped message type, which is not included by default. There is a patch that invokes a new message type AudioStampedRaw.msg. The patch can be found in the github repo https://github.com/pjckoch/ROS-Robotic-Infant-Ears under ROS-Robotic-Infant-Ears/patch/-->
+  <!--To use the audio_common driver set the following arg to true-->
+  <arg name="audio_common" default="false"/>
+
+  <!--Input message type for audio_fft node. Needs to be changed if audio_common driver is used.-->
+  <arg name="input_message_type" default="AudioWav"/>
+
+  <!--How to choose the device-->
+  <!--For audio_common: display available sound cards with arecord -l. Then specify device (e.g. 'hw:0,0'). If no device is specified, the driver will choose one.-->
+  <!--For audio_proc driver: the device is chosen via a PyAudio index which differs from -arecord -l. Run the driver once and it will show all available devices and corresponding indices-->
+
+
   <arg name="device" default=""/>
   <arg name="channels" default="1"/>
   <arg name="sample_rate" default="48000"/>
   <arg name="depth" default="32"/>
 
-  <param name="sample_rate" value="$(arg sample_rate)"/>
-
-  <!--decide whether to capture and process data-->
-  <arg name="capture_and_process default="true"/>
-
   <!--decide whether you want to plot the data-->
   <arg name="plot" default="true"/>
 
-
-  <group if="$(capture_and_process)">
+  <!--######DRIVER#####-->
+  <group if="$(arg audio_common)">
     <include file="$(find audio_capture)/launch/capture_wave.launch">
       <arg name="device" value="$(arg device)"/>
       <arg name="channels" value="$(arg channels)"/>
       <arg name="sample_rate" value="$(arg sample_rate)"/>
       <arg name="depth" value="$(arg depth)"/>
-    </include>  
-
-    <node name="audio_fft" pkg="audio_proc" type="audio_fft.py" output="screen">
-    </node>
+    </include>
+   </group>
+   
+  <group unless="$(arg audio_common)">
+    <node name="audio_driver" pkg="audio_proc" type="audio_driver.py" output="screen">
+      <param name="sample_rate" value="$(arg sample_rate)"/>
+      <param name="device" value="$(arg device)"/>
+    </node> 
   </group>
 
+  <!--#####FFT######-->
+  <node name="audio_fft" pkg="audio_proc" type="audio_fft.py" output="screen">
+    <param name="sample_rate" value="$(arg sample_rate)"/>
+    <param name="msg_type_audio_common" value="$(arg audio_common)"/>
+  </node>
+
+  <!--#####PLOT#####-->
   <group if="$(arg plot)">
-    <node name="throttle" pkg="topic_tools" type="throttle"
-     args="messages /fftData 30 /fftData_throttle/">
-    </node>
-    <node name="audio_plot" pkg="audio_proc" type="audio_plot.py" output="screen">
-    </node>
+    <include file="$(find audio_proc)/launch/plotData.launch">
+      <arg name="sample_rate" value="$(arg sample_rate)"/>
+    </include>
   </group>
 
 

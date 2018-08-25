@@ -27,9 +27,9 @@ class FourierTransform():
     """the FourierTransform class provides a subscriber and publisher function to transform incoming time-domain signals to spectral-domain and publish both representations."""
     def __init__(self):
 
-        self.fft=None
-        self.freqs=None
-        self.data=None # audio data
+        self.fft = []
+        self.freqs = []
+        self.data = [] # audio data
 
         rospy.init_node('fft')
         rospy.loginfo("FFT node running")
@@ -48,7 +48,6 @@ class FourierTransform():
         Calls the getFFT function and publishes the FFT data along with the time-domain signal.
         Note that there is no publishing rate specified since the rate is determined by the 
         incoming audio stream."""
-
         # timing analysis: begin
         callback_begin = rospy.Time.now()
         
@@ -57,7 +56,8 @@ class FourierTransform():
         header.stamp = msg.header.stamp
 
         self.data = np.frombuffer(msg.data, dtype=np.int16)
-        self.fft, self.freqs = getFFT(self.data, self.sample_rate)
+        if len(self.data) > 0:
+            self.fft, self.freqs = getFFT(self.data, self.sample_rate)
 
         # timing analysis: end
         callback_end = rospy.Time.now()

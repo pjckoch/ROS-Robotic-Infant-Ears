@@ -173,13 +173,13 @@ class AudioDriver():
         self.t.start()
 
     def stream_start(self):
-        """Adds data to self.data until termination signal
+        """Adds data to self.dataraw until termination signal
         """
         if not self.cancel:
             print(" -- starting stream")
             self.keepRecording = True
             self.dataraw = np.zeros(self.chunk)
-            self.data = np.ones(self.chunk)
+            self.slideframe = np.ones(self.chunk)
             self.stream = self.p.open(format=pyaudio.paInt16, channels=1,
                                       rate=self.fs, input=True,
                                       input_device_index=self.device,
@@ -213,19 +213,20 @@ class AudioDriver():
         """This function publishes the frame that slides along
         the two concatenating buffers.
         """
-        self.data = self.twobuff[self.offset:self.offset + self.chunk]
-        # fill message header with current system time
-        header = Header()
-        header.stamp = rospy.Time.now()
-        # publish the audio message
-        self.data = np.asarray(self.data, dtype=np.uint8)
-        self.pub.publish(header, self.data.tolist())
-        self.offset = self.offset + self.stepsize
         # if the index has reached a certain point,
         # the first half of the array will have been overwritten
         # with new data already, so we can go back to 0
         if self.offset >= (self.pubRate/self.readrate) * self.stepsize:
             self.offset = 0
+        # slide frame along array twobuff
+        self.slideframe = self.twobuff[self.offset:self.offset + self.chunk]
+        # fill message header with current system time
+        header = Header()
+        header.stamp = rospy.Time.now()
+        # publish the audio message
+        self.slideframe = np.asarray(self.slideframe, dtype=np.uint8)
+        self.pub.publish(header, self.slideframe.tolist())
+        self.offset = self.offset + self.stepsize
 
     def run (self):
         """Start stream and publish audio data.

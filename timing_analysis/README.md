@@ -19,4 +19,4 @@ This package serves to analyze the timing of a system or node. It requires that 
 [bare_processing_time, processing_time+network_latency].
 7. You can the start the measurement by echoing the published duration messages into a txt- or log-file by running 
 `rostopic echo -p /topic_name > data.txt` on your command line.
-8. When you finished your measurement, run the logfile_stats (`./logfile_stats` on command line). You will be asked to specify the full filepath to your log-file (e.g. /home/myusername/mylogfiles/mynodeduration.log). Then, the results will be printed to your terminal.
+8. When you finished your measurement, run the logfile_stats (`./logfile_stats` on command line). You will be asked to specify the full filepath to your log-file (e.g. `/home/myusername/mylogfiles/mynodeduration.log`). Then, the results will be printed to your terminal.

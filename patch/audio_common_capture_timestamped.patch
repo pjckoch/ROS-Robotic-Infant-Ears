@@ -1,0 +1,138 @@
+diff --git a/audio_capture/CMakeLists.txt b/audio_capture/CMakeLists.txt
+index 0bc0b11..12136f2 100644
+--- a/audio_capture/CMakeLists.txt
++++ b/audio_capture/CMakeLists.txt
+@@ -13,9 +13,18 @@ include_directories(${catkin_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS} ${GST1.0_INCLUD
+ 
+ catkin_package()
+ 
+-add_executable(audio_capture src/audio_capture.cpp)
+-target_link_libraries(audio_capture ${catkin_LIBRARIES} ${GST1.0_LIBRARIES} ${Boost_LIBRARIES})
+-add_dependencies(audio_capture ${catkin_EXPORTED_TARGETS})
++add_executable(
++  audio_capture src/audio_capture.cpp
++)
++
++
++target_link_libraries(
++  audio_capture ${catkin_LIBRARIES} ${GST1.0_LIBRARIES} ${Boost_LIBRARIES}
++)
++
++add_dependencies(
++  audio_capture ${catkin_EXPORTED_TARGETS}
++)
+ 
+ install(TARGETS audio_capture
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
+diff --git a/audio_capture/launch/capture_wave.launch b/audio_capture/launch/capture_wave.launch
+index 3a4bb70..87f3621 100644
+--- a/audio_capture/launch/capture_wave.launch
++++ b/audio_capture/launch/capture_wave.launch
+@@ -1,13 +1,17 @@
+ <launch>
+   <arg name="device" default="" />
++  <arg name="channels" default="1" />
++  <arg name="sample_rate" default="16000" />
++  <arg name="depth" default="16" />
++
+ 
+   <!-- publish audio data as wav format -->
+   <node name="audio_capture" pkg="audio_capture" type="audio_capture" output="screen">
+     <param name="device" value="" />
+     <param name="format" value="wave" />
+-    <param name="channels" value="1" />
+-    <param name="depth" value="16" />
+-    <param name="sample_rate" value="16000" />
++    <param name="channels" value="$(arg channels)" />
++    <param name="depth" value="$(arg depth)" />
++    <param name="sample_rate" value="$(arg sample_rate)" />
+     <param name="device" value="$(arg device)" />
+   </node>
+ </launch>
+diff --git a/audio_capture/package.xml b/audio_capture/package.xml
+index ceb5206..48da651 100644
+--- a/audio_capture/package.xml
++++ b/audio_capture/package.xml
+@@ -19,9 +19,11 @@
+    <build_depend>audio_common_msgs</build_depend>
+    <build_depend>libgstreamer1.0-dev</build_depend>
+    <build_depend>libgstreamer-plugins-base1.0-dev</build_depend>
++   <build_depend>message_generation</build_depend>
+ 
+    <run_depend>roscpp</run_depend>
+    <run_depend>audio_common_msgs</run_depend>
++   <run_depend>message_runtime</run_depend>
+    <run_depend>gstreamer1.0</run_depend>
+    <run_depend>gstreamer1.0-plugins-base</run_depend>
+    <run_depend>gstreamer1.0-plugins-good</run_depend>
+diff --git a/audio_capture/src/audio_capture.cpp b/audio_capture/src/audio_capture.cpp
+index e5d6ee5..120ec70 100644
+--- a/audio_capture/src/audio_capture.cpp
++++ b/audio_capture/src/audio_capture.cpp
+@@ -5,7 +5,7 @@
+ 
+ #include <ros/ros.h>
+ 
+-#include "audio_common_msgs/AudioData.h"
++#include "audio_common_msgs/AudioDataStampedRaw.h"
+ 
+ namespace audio_transport
+ {
+@@ -37,7 +37,7 @@ namespace audio_transport
+         std::string device;
+         ros::param::param<std::string>("~device", device, "");
+ 
+-        _pub = _nh.advertise<audio_common_msgs::AudioData>("audio", 10, true);
++        _pub = _nh.advertise<audio_common_msgs::AudioDataStampedRaw>("audio", 10, true);
+ 
+         _loop = g_main_loop_new(NULL, false);
+         _pipeline = gst_pipeline_new("ros_pipeline");
+@@ -159,7 +159,7 @@ namespace audio_transport
+         exit(code);
+       }
+ 
+-      void publish( const audio_common_msgs::AudioData &msg )
++      void publish( const audio_common_msgs::AudioDataStampedRaw &msg )
+       {
+         _pub.publish(msg);
+       }
+@@ -174,7 +174,10 @@ namespace audio_transport
+ 
+         GstBuffer *buffer = gst_sample_get_buffer(sample);
+ 
+-        audio_common_msgs::AudioData msg;
++        audio_common_msgs::AudioDataStampedRaw msg;
++        // add timestamp to header
++        msg.header.stamp = ros::Time::now();
++
+         gst_buffer_map(buffer, &map, GST_MAP_READ);
+         msg.data.resize( map.size );
+ 
+diff --git a/audio_common_msgs/CMakeLists.txt b/audio_common_msgs/CMakeLists.txt
+index eb8ff56..7147402 100644
+--- a/audio_common_msgs/CMakeLists.txt
++++ b/audio_common_msgs/CMakeLists.txt
+@@ -2,8 +2,12 @@ cmake_minimum_required(VERSION 2.8.3)
+ 
+ project(audio_common_msgs)
+ 
+-find_package(catkin REQUIRED COMPONENTS message_generation)
+-add_message_files(DIRECTORY msg FILES AudioData.msg)
+-generate_messages()
++find_package(catkin REQUIRED COMPONENTS std_msgs message_generation)
++add_message_files(DIRECTORY msg FILES AudioData.msg AudioDataStampedRaw.msg)
++generate_messages(DEPENDENCIES std_msgs)
+ 
+ catkin_package(CATKIN_DEPENDS message_runtime)
++
++include_directories(
++  ${catkin_INCLUDE_DIRS}
++)
+diff --git a/audio_common_msgs/msg/AudioDataStampedRaw.msg b/audio_common_msgs/msg/AudioDataStampedRaw.msg
+new file mode 100644
+index 0000000..3ac79e5
+--- /dev/null
++++ b/audio_common_msgs/msg/AudioDataStampedRaw.msg
+@@ -0,0 +1,2 @@
++std_msgs/Header header
++uint8[] data

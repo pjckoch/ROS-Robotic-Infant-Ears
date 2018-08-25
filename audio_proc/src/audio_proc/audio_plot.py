@@ -26,7 +26,7 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         self.fft=None
         self.audiowave=None
         self.freqs=None
-        self.sample_rate=rospy.get_param("~sample_rate", 48000)
+        self.sample_rate=rospy.get_param("/sample_rate", 48000)
         rospy.Subscriber("fftData_throttle", FFTData, self.monitoringCallback)
         self.connect(self, QtCore.SIGNAL("changeUI(PyQt_PyObject)"), self.updatePlot) 
 

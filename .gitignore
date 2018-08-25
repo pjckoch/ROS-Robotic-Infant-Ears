@@ -1,3 +1,4 @@
 usb_cam/
-CMakeLists.txt
+/CMakeLists.txt
 .catkin_workspace
+audio_common/

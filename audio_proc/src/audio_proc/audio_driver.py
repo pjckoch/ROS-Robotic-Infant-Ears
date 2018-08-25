@@ -14,7 +14,7 @@ class AudioDriver():
 
     ROS parameters:
 
-        sound_card - the index of the sound card input to use. Leave blank
+        device - the index of the sound card input to use. Leave blank
         to automatically detect one.
 
         fs - sample rate to use. Defaults to something supported.
@@ -29,8 +29,8 @@ class AudioDriver():
         rospy.init_node('audio_driver')
         self.pub = rospy.Publisher('AudioStream', AudioWav, queue_size=8)
         self.p = pyaudio.PyAudio()
-        self.device = rospy.get_param('~sound_card', None)
-        self.fs = rospy.get_param('~sample_rate', 44100)
+        self.device = rospy.get_param('~device', None)
+        self.fs = rospy.get_param('~sample_rate', 48000)
         self.chunk = rospy.get_param('~buffer_size', 4096)
         self.cancel = False  # in case we can't find microphones
         self.run_and_publish()
@@ -134,8 +134,11 @@ class AudioDriver():
         """
         try:
             self.data = np.fromstring(self.stream.read(self.chunk),
-                                      dtype=np.int16)
-            self.pub.publish(self.data, self.fs, self.chunk)
+                                      dtype=np.uint8)
+            # fill message header with current system time
+            header = rospy.Time.now()
+            # publish the audio message
+            self.pub.publish(header, self.data, self.fs, self.chunk)
         except IOError as io:
             rospy.loginfo("-- exception! terminating audio driver...")
             print("\n\n%s\n\n" % io)
@@ -144,8 +147,8 @@ class AudioDriver():
                       "sample_rate and/or buffer_size."
                       "Sometimes even the device's default "
                       "sample_rate does not work. "
-                      "e.g. for PSEye microphone default is 44100, "
-                      "but it only works with 48000.\n\n\n")
+                      "e.g. if 44100 Hz was used, "
+                      "you may want to try 48000 Hz.\n\n\n")
             self.keepRecording = False
         except Exception as E:
             rospy.loginfo(" -- exception! terminating audio driver...")

@@ -8,20 +8,24 @@
 
   <param name="sample_rate" value="$(arg sample_rate)"/>
 
+  <!--decide whether to capture and process data-->
+  <arg name="capture_and_process default="true"/>
+
   <!--decide whether you want to plot the data-->
   <arg name="plot" default="true"/>
 
-  <include file="$(find audio_capture)/launch/capture_wave.launch">
-    <arg name="device" value="$(arg device)"/>
-    <arg name="channels" value="$(arg channels)"/>
-    <arg name="sample_rate" value="$(arg sample_rate)"/>
-    <arg name="depth" value="$(arg depth)"/>
-  </include>  
 
+  <group if="$(capture_and_process)">
+    <include file="$(find audio_capture)/launch/capture_wave.launch">
+      <arg name="device" value="$(arg device)"/>
+      <arg name="channels" value="$(arg channels)"/>
+      <arg name="sample_rate" value="$(arg sample_rate)"/>
+      <arg name="depth" value="$(arg depth)"/>
+    </include>  
 
-  <node name="audio_fft" pkg="audio_proc" type="audio_fft.py" output="screen">
-  </node>
-
+    <node name="audio_fft" pkg="audio_proc" type="audio_fft.py" output="screen">
+    </node>
+  </group>
 
   <group if="$(arg plot)">
     <node name="throttle" pkg="topic_tools" type="throttle"

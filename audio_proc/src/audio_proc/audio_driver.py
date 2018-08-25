@@ -215,7 +215,8 @@ class AudioDriver():
         """
         # to prevent the frame slider from reaching an index out of bounds,
         # we must set the offset index back to zero when it reaches
-        # half of the twobuff array
+        # half of the twobuff array. Due to the chosen step size, this will
+        # also be the point when a new buffer has been written to the array
         if self.offset >= len(self.twobuff)/2.0:
             self.offset = 0
         # slide frame along array twobuff

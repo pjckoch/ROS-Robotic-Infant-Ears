@@ -25,7 +25,7 @@ vector<double> compStats (vector<double> v) {
 }
 
 
-void logStats (string filename) {
+void logStats (string filename, int number_of_measurements) {
 
     ifstream inFile;
     vector<double> vect_proc;
@@ -55,7 +55,9 @@ void logStats (string filename) {
     getline(inFile, dstring);
     // skip first number (time)
     getline(inFile, dstring, ',');
-    while (getline(inFile, dstring, ',')) {
+    while (getline(inFile, dstring, ',') &&
+            vect_overall.size() < number_of_measurements) {
+
         istringstream dss(dstring);
         dss >> d;
         if (counter%3 == 0) {
@@ -123,7 +125,7 @@ int main(int argc, char* argv[]) {
     cin >> logfile;
 
     logfile = "/home/patrick/LOGFILES/" + logfile;            
-    logStats(logfile);
+    logStats(logfile, 20000);
 
     return 0;
 }

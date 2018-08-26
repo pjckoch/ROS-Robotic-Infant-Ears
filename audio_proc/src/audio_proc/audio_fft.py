@@ -20,7 +20,7 @@ def getFFT(data,srate):
       # get the DFT sample frequencies
       freqs=sp.fftpack.rfftfreq(len(fft),1.0/srate)
       # remove the symmetric part of the signal and return
-      return fft, freqs
+      return fft[:int((len(fft)/2))], freqs[:int(len(freqs)/2)]
 
 
 class FourierTransform():

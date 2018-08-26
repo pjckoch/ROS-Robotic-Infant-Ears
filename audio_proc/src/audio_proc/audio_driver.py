@@ -31,11 +31,11 @@ class AudioDriver():
         self.pub = rospy.Publisher('audio', AudioWav, queue_size=8)
         self.p = pyaudio.PyAudio()
         self.device = rospy.get_param('~device', 3)
-        self.fs = rospy.get_param('~sample_rate', 48000)
+        self.fs = rospy.get_param('~sample_rate', 16000)
         self.chunk = rospy.get_param('~buffer_size', 2048)
+        self.pubRate = rospy.get_param('~publish_rate', 100)
         self.cancel = False  # in case we can't find microphones
         self.stepsize = 0
-        self.pubRate = 100
         self.offset = 0
         
         self.buff0 = []
@@ -132,9 +132,8 @@ class AudioDriver():
         """Gently detach from things."""
         rospy.loginfo(" -- sending stream termination command...")
         self.keepRecording = False  # the threads should self-close
-        while(self.t.isAlive()):  # wait for all threads to close
-            print("waiting for threads to close")
-            rospy.sleep(.1)
+        print("waiting for threads to close")
+        rospy.sleep(2)
         self.stream.stop_stream()
         self.p.terminate()
 

@@ -18,9 +18,9 @@
 
   <arg name="device" default=""/>
   <arg name="channels" default="1"/>
-  <arg name="sample_rate" default="48000"/>
+  <arg name="sample_rate" default="16000"/>
   <arg name="depth" default="32"/>
-  <arg name="buffer_size" default="4096"/>
+  <arg name="buffer_size" default="2048"/>
 
   <!--decide whether you want to plot the data-->
   <arg name="plot" default="true"/>

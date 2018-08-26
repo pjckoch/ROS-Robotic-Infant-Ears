@@ -20,7 +20,7 @@ def getFFT(data,srate):
       # get the DFT sample frequencies
       freqs=sp.fftpack.rfftfreq(len(fft),1.0/srate)
       # remove the symmetric part of the signal and return
-      return fft[:int((len(fft)/2))], freqs[:int(len(freqs)/2)]
+      return fft, freqs
 
 
 class FourierTransform():
@@ -34,7 +34,7 @@ class FourierTransform():
         rospy.init_node('fft')
         rospy.loginfo("FFT node running")
 
-        self.sample_rate = rospy.get_param("~sample_rate", 48000)
+        self.sample_rate = rospy.get_param("~sample_rate",16000) 
         self.msg_type_audio_common = rospy.get_param("~msg_type_audio_common", False)
 
         self.pub=rospy.Publisher('fftData', FFTData, queue_size=5)

@@ -126,7 +126,8 @@ class AudioDriver():
         msg += ('(device %d) ' % self.device)
         msg += ('with %d frames per buffer and ' % self.chunk)
         msg += ('at %d Hz' % self.fs)
-        print(msg)
+        if not self.cancel
+            print(msg)
 
     def close(self):
         """Gently detach from things."""

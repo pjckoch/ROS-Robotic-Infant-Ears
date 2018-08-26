@@ -122,12 +122,11 @@ class AudioDriver():
             if not self.cancel:
                 self.device = mics[0]  # pick the first one
                 self.fs = self.valid_rate(self.device, self.fs)
-        msg = ('recording from "%s" ' % self.info["name"])
-        msg += ('(device %d) ' % self.device)
-        msg += ('with %d frames per buffer and ' % self.chunk)
-        msg += ('at %d Hz' % self.fs)
-        if not self.cancel
-            print(msg)
+                msg = ('recording from "%s" ' % self.info["name"])
+                msg += ('(device %d) ' % self.device)
+                msg += ('with %d frames per buffer and ' % self.chunk)
+                msg += ('at %d Hz' % self.fs)
+                print(msg)
 
     def close(self):
         """Gently detach from things."""

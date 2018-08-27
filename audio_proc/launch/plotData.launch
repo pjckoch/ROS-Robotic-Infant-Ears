@@ -1,7 +1,7 @@
 <launch>
   
   <arg name="input_topic" default="/fftData"/>
-  <arg name="sample_rate" default="48000"/>
+  <arg name="sample_rate" default="16000"/>
   <arg name="throttle" default="true"/> 
   <arg name="bandwidth" default="30"/> 
  

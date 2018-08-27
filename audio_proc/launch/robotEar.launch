@@ -18,8 +18,9 @@
 
   <arg name="device" default=""/>
   <arg name="channels" default="1"/>
-  <arg name="sample_rate" default="48000"/>
+  <arg name="sample_rate" default="16000"/>
   <arg name="depth" default="32"/>
+  <arg name="buffer_size" default="2048"/>
 
   <!--decide whether you want to plot the data-->
   <arg name="plot" default="true"/>
@@ -38,6 +39,7 @@
     <node name="audio_driver" pkg="audio_proc" type="audio_driver.py" output="screen">
       <param name="sample_rate" value="$(arg sample_rate)"/>
       <param name="device" value="$(arg device)"/>
+      <param name="buffer_size" value="$(arg buffer_size)"/>
     </node> 
   </group>
 

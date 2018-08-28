@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<launch>
+
+<!-- Specify the addresses of the machines involved -->
+<arg name="pi_address" default="192.168.4.1"/>
+<arg name="pc_address" default="192.168.4.18"/>
+<!-- Specify the usernames for the machines -->
+<arg name="pi_user" default="pi"/>
+<arg name="pc_user" default="patrick"/>
+<!-- Enter the password for SSH connection -->
+<arg name="pi_pw" default=""/>
+<arg name="pc_pw" default=""/>
+
+
+<!-- #####LAUNCH AUDIO ON RPI##### -->
+<group>
+  <machine name="at_robot" address="$(arg pi_address)" user="$(arg pi_user)" password="$(arg pi_pw)"
+    env-loader="/home/$(arg pi_user)/ROS_pi_env_loader.sh" default="true"/>  
+  <include file="$(find audio_proc)/launch/piAudioStream.launch">
+  </include> 
+</group>  
+
+
+<!-- #####LAUNCH AUDIO ON COMPUTER##### -->
+<group>
+  <machine name="at_computer" address="$(arg pc_address)" user="$(arg pc_user)" password="$(arg pc_pw)"
+    env-loader="/home/$(arg pc_user)/ROS_pc_env_loader.sh" default="true"/>
+  <include file="$(find audio_proc)/launch/pcAudioProcessing.launch">
+  </include>
+</group>
+
+
+</launch>

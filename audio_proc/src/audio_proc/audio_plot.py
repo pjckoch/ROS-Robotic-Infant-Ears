@@ -21,15 +21,18 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         self.setupUi(self)
         self.grFFT.plotItem.showGrid(True, True, 0.5)
         self.grPCM.plotItem.showGrid(True, True, 0.5)
-        self.maxFFT=0
-        self.maxPCM=0
-        self.fft=None
-        self.audiowave=None
-        self.freqs=None
-        self.sample_rate=rospy.get_param("/sample_rate", 48000)
-        rospy.Subscriber("fftData_throttle", FFTData, self.monitoringCallback)
-        self.connect(self, QtCore.SIGNAL("changeUI(PyQt_PyObject)"), self.updatePlot) 
+        self.maxFFT = 0
+        self.maxPCM = 0
+        self.chunk = 0
+        self.fft = None
+        self.audiowave = None
+        self.freqs = None
 
+        self.sample_rate=rospy.get_param("~sample_rate", 48000)
+
+        rospy.Subscriber("fftData_throttle", FFTData, self.monitoringCallback)
+        self.connect(self, QtCore.SIGNAL("changeUI(PyQt_PyObject)"),
+                     self.updatePlot)
 
     def updatePlot(self, msg):
         """
@@ -38,7 +41,7 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
         self.fft = np.asarray(msg.fft,dtype=np.float32)
         self.freqs = np.asarray(msg.freqs,dtype=np.float32)
         self.audiowave = np.asarray(msg.wavedata,dtype=np.int32)
-        self.chunk = self.sample_rate/100 # publishing rate is 100
+        self.chunk = len(self.audiowave)
         if not self.audiowave is None and not self.fft is None:
             pcmMax=np.max(np.abs(self.audiowave))
             if pcmMax>self.maxPCM:
@@ -51,12 +54,11 @@ class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):
             pen=pyqtgraph.mkPen(color='b')
             self.grPCM.plot(np.arange(self.chunk)/float(self.sample_rate), self.audiowave,pen=pen,clear=True)
             pen=pyqtgraph.mkPen(color='r')
-            self.grFFT.plot(self.freqs,self.fft/self.maxFFT,pen=pen,clear=True)
-        
-        timer = QtCore.QTimer()
+            self.grFFT.plot(self.freqs,self.fft/self.maxFFT,pen=pen,clear=True)     
     
     def monitoringCallback(self,msg):
         self.emit(QtCore.SIGNAL("changeUI(PyQt_PyObject)"),msg)
+
 
 if __name__=="__main__":
     app = QtGui.QApplication(sys.argv)

@@ -4,8 +4,9 @@ import rospy
 import pyaudio
 import numpy as np
 import threading
-from std_msgs.msg import Int32
+from std_msgs.msg import Int32, Header
 from audio_proc.msg import AudioWav
+from rospy.numpy_msg import numpy_msg
 
 
 class AudioDriver():
@@ -14,7 +15,7 @@ class AudioDriver():
 
     ROS parameters:
 
-        sound_card - the index of the sound card input to use. Leave blank
+        device - the index of the sound card input to use. Leave blank
         to automatically detect one.
 
         fs - sample rate to use. Defaults to something supported.
@@ -27,13 +28,23 @@ class AudioDriver():
 
     def __init__(self):
         rospy.init_node('audio_driver')
-        self.pub = rospy.Publisher('AudioStream', AudioWav, queue_size=8)
+        self.pub = rospy.Publisher('audio', AudioWav, queue_size=8)
         self.p = pyaudio.PyAudio()
-        self.device = rospy.get_param('~sound_card', None)
-        self.fs = rospy.get_param('~sample_rate', 44100)
-        self.chunk = rospy.get_param('~buffer_size', 4096)
+        self.device = rospy.get_param('~device', 3)
+        self.fs = rospy.get_param('~sample_rate', 16000)
+        self.chunk = rospy.get_param('~buffer_size', 2048)
+        self.pubRate = rospy.get_param('~publish_rate', 100)
         self.cancel = False  # in case we can't find microphones
-        self.run_and_publish()
+        self.stepsize = 0
+        self.offset = 0
+        
+        self.buff0 = []
+        self.buff1 = []
+        self.buff2 = []
+        self.threebuff = []
+        
+        self.get_stepsize()
+        self.run()
 
     #  LOOK FOR VALID INPUT DEVICES
 
@@ -111,19 +122,19 @@ class AudioDriver():
             if not self.cancel:
                 self.device = mics[0]  # pick the first one
                 self.fs = self.valid_rate(self.device, self.fs)
-        msg = ('recording from "%s" ' % self.info["name"])
-        msg += ('(device %d) ' % self.device)
-        msg += ('with %d frames per buffer and ' % self.chunk)
-        msg += ('at %d Hz' % self.fs)
-        print(msg)
+        if not self.cancel:
+            msg = ('recording from "%s" ' % self.info["name"])
+            msg += ('(device %d) ' % self.device)
+            msg += ('with %d frames per buffer and ' % self.chunk)
+            msg += ('at %d Hz' % self.fs)
+            print(msg)
 
     def close(self):
         """Gently detach from things."""
         rospy.loginfo(" -- sending stream termination command...")
         self.keepRecording = False  # the threads should self-close
-        while(self.t.isAlive()):  # wait for all threads to close
-            print("waiting for threads to close")
-            rospy.sleep(.1)
+        print("waiting for threads to close")
+        rospy.sleep(2)
         self.stream.stop_stream()
         self.p.terminate()
 
@@ -133,9 +144,12 @@ class AudioDriver():
         """Reads audio buffer and re-launches itself.
         """
         try:
-            self.data = np.fromstring(self.stream.read(self.chunk),
-                                      dtype=np.int16)
-            self.pub.publish(self.data, self.fs, self.chunk)
+            # FIFO queue: drop oldest buffer
+            self.buff0 = self.buff1
+            self.buff1 = self.buff2
+            self.buff2 = np.fromstring(self.stream.read(self.chunk),
+                                       dtype=np.uint8)
+            self.threebuff = np.concatenate([self.buff0, self.buff1, self.buff2])
         except IOError as io:
             rospy.loginfo("-- exception! terminating audio driver...")
             print("\n\n%s\n\n" % io)
@@ -144,8 +158,8 @@ class AudioDriver():
                       "sample_rate and/or buffer_size."
                       "Sometimes even the device's default "
                       "sample_rate does not work. "
-                      "e.g. for PSEye microphone default is 44100, "
-                      "but it only works with 48000.\n\n\n")
+                      "e.g. if 44100 Hz was used, "
+                      "you may want to try 48000 Hz.\n\n\n")
             self.keepRecording = False
         except Exception as E:
             rospy.loginfo(" -- exception! terminating audio driver...")
@@ -165,12 +179,15 @@ class AudioDriver():
         self.t.start()
 
     def stream_start(self):
-        """Adds data to self.data until termination signal
+        """Adds data to self.buff2 until termination signal
         """
         if not self.cancel:
             print(" -- starting stream")
             self.keepRecording = True
-            self.data = np.zeros(self.chunk)
+            self.buff0 = np.zeros(self.chunk)
+            self.buff1 = np.zeros(self.chunk)
+            self.buff2 = np.zeros(self.chunk)
+            self.slideframe = np.ones(self.chunk)
             self.stream = self.p.open(format=pyaudio.paInt16, channels=1,
                                       rate=self.fs, input=True,
                                       input_device_index=self.device,
@@ -180,16 +197,55 @@ class AudioDriver():
             print("Could not find any mics. "
                   "Please connect a mic and restart audio_driver.")
 
-    def run_and_publish(self):
+
+    def get_stepsize(self):
+        """Instead of using a data-triggered publish rate,
+           the publish rate shall be constant at e.g. 100.
+           To ensure this, a frame slides along an array "threebuff"
+           that contains the second last, the last and the new buffer.
+           That way,
+           the data that is published is always (partly) new and
+           large chunk sizes can be used. The latter is important to
+           obtain a high resolution in the spectral domain. This
+           function computes the step-size by which the frame slides.
+        """
+        self.readrate = float(self.fs)/self.chunk
+        self.stepsize = float(self.fs)/self.pubRate
+        self.stepsize = int(self.stepsize)
+        print("Sliding Frame step size: %d" % self.stepsize)
+
+    def publishFrame(self):
+        """This function publishes the frame that slides along
+        the two concatenating buffers.
+        """
+        # slide frame along array threebuff
+        self.slideframe = self.threebuff[self.offset:self.offset + self.chunk]
+        # fill message header with current system time
+        header = Header()
+        header.stamp = rospy.Time.now()
+        # publish the audio message
+        self.slideframe = np.asarray(self.slideframe, dtype=np.uint8)
+        self.pub.publish(header, self.slideframe.tolist())
+        # to prevent the frame slider from reaching an index out of bounds,
+        # we must set the offset index back to zero when it exceeds
+        # 1/3 of the threebuff array. Due to the chosen step size, this will
+        # also be the point when a new buffer has been written to the array
+        if self.offset >= self.chunk:
+            self.offset = 0 
+        else:
+           self.offset = self.offset + self.stepsize
+ 
+    def run (self):
         """Start stream and publish audio data.
         """
         self.initiate()
         if not self.cancel:
             # start recording
             self.stream_start()
-            # keep the node alive
-            while not rospy.is_shutdown():
-                pass
+            r = rospy.Rate(100)
+            while not rospy.is_shutdown() and self.stream.is_active():
+                self.publishFrame()
+                r.sleep()
             self.close()
         else:
             rospy.loginfo("Audio driver could not find working microphone.")

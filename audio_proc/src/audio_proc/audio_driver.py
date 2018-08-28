@@ -133,9 +133,8 @@ class AudioDriver():
         """Gently detach from things."""
         rospy.loginfo(" -- sending stream termination command...")
         self.keepRecording = False  # the threads should self-close
-        while self.stream.is_alive():
-            print("waiting for threads to close")
-            rospy.sleep(1)
+        print("waiting for threads to close")
+        rospy.sleep(1)
         self.stream.stop_stream()
         self.p.terminate()
 

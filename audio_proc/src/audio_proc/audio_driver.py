@@ -28,7 +28,7 @@ class AudioDriver():
 
     def __init__(self):
         rospy.init_node('audio_driver')
-        self.pub = rospy.Publisher('audio', AudioWav, queue_size=8)
+        self.pub = rospy.Publisher('audio', AudioWav, queue_size=1)
         self.p = pyaudio.PyAudio()
         self.device = rospy.get_param('~device', 3)
         self.fs = rospy.get_param('~sample_rate', 16000)

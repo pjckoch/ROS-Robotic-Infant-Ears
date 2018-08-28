@@ -3,4 +3,5 @@ usb_cam/
 .catkin_workspace
 audio_common/
 ROS_env_loader.sh
-robotEar.launch
+audio_proc/launch/robotEar.launch
+audio_proc/launch/robotEar.launch

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<launch>
+
+<!--Choose between two audio drivers:-->
+<!--1.: audio_capture from the audio_common package which uses gstreamer-->
+<!--2.: audio_driver from the audio_proc package-->
+<!--Note: the audio_common package driver would be preferable, but does not work on a Raspberry Pi as of now(2018-08-01)-->
+<!--In case you want to use the audio_common driver, note that it is recommended to use a timestamped message type, which is not included by default. There is a patch that invokes a new message type AudioStampedRaw.msg. The patch can be found in the github repo https://github.com/pjckoch/ROS-Robotic-Infant-Ears under ROS-Robotic-Infant-Ears/patch/-->
+<!--To use the audio_common driver set the following arg to true-->
+<arg name="audio_common" default="false"/>
+
+
+<!-- Decide whether you want to perform the FFT on the robot control unit (e.g. RPi) -->
+<!-- If set to false, the FFT will be performed on the PC/Workstation -->
+<arg name="fft_at_robot" default="false"/>
+
+    
+<arg name="input_topic" default="/fftData"/>
+<arg name="sample_rate" default="16000"/>
+
+<!-- Decide whether to plot the data -->
+<arg name="plot" default="true"/>
+
+<!-- If the stream rate is too high, the plot will freeze. --> 
+<!-- Therefore, we can create a second topic FFT topic with throttled bandwidth -->
+<arg name="bandwidth" default="30"/> 
+
+<!-- #####FFT###### -->
+<group unless="$(arg fft_at_robot)">
+  <node name="audio_fft" pkg="audio_proc" type="audio_fft.py" output="screen">
+    <param name="sample_rate" value="$(arg sample_rate)"/>
+    <param name="input_msg_type" value="AudioData" if="$(arg audio_common)"/>
+    <param name="input_msg_type" value="AudioWav" unless="$(arg audio_common)"/>
+  </node>
+</group>
+
+
+<!-- #####PLOT##### -->
+<group if="$(arg plot)">
+  <node name="throttle" pkg="topic_tools" type="throttle"
+   args="messages $(arg input_topic) $(arg bandwidth)">
+  </node>
+  <node name="audio_plot" pkg="audio_proc" type="audio_plot.py" output="screen">
+    <param name="sample_rate" value="$(arg sample_rate)"/>
+  </node>
+</group>
+
+
+</launch>

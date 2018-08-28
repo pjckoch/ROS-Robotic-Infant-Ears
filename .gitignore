@@ -2,3 +2,5 @@ usb_cam/
 /CMakeLists.txt
 .catkin_workspace
 audio_common/
+ROS_env_loader.sh
+robotEar.launch

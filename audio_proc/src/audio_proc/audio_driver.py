@@ -9,6 +9,7 @@ from audio_proc.msg import AudioWav
 from rospy.numpy_msg import numpy_msg
 
 
+
 class AudioDriver():
     """The AudioDriver class provides access to continuously recorded
     (and mathematically processed) microphone data.
@@ -172,11 +173,46 @@ class AudioDriver():
             self.p.terminate()
             rospy.loginfo(" -- stream STOPPED")
 
+    def callback(self, in_data, frame_count, time_info, status):
+        """Reads audio buffer and gets re-called every time a buffer was returned.
+        """
+        try:
+            # FIFO queue: drop oldest buffer
+            self.buff0 = self.buff1
+            self.buff1 = self.buff2
+            self.buff2 = np.fromstring(in_data,
+                                       dtype=np.uint8)
+            self.threebuff = np.concatenate([self.buff0, self.buff1, self.buff2])
+        except IOError as io: 
+            rospy.loginfo("-- exception! terminating audio driver...")
+            print("\n\n%s\n\n" % io) 
+            if io.strerror == -9981:
+                print("Buffer overflow is likely caused by wrongly chosen "
+                      "sample_rate and/or buffer_size."
+                      "Sometimes even the device's default "
+                      "sample_rate does not work. "
+                      "e.g. if 44100 Hz was used, "
+                      "you may want to try 48000 Hz.\n\n\n")
+            self.keepRecording = False
+        except Exception as E:
+            rospy.loginfo(" -- exception! terminating audio driver...")
+            print("\n\n%s\n\n" % E)
+            self.keepRecording = False
+        if self.keepRecording:
+            callback_flag = pyaudio.paContinue
+        else:
+            self.stream.close()
+            self.p.terminate()
+            rospy.loginfo(" -- stream STOPPED")
+            callback_flag = pyaudio.paComplete
+        return (in_data, callback_flag)
+
+
     def stream_thread_new(self):
         """Starts a new thread
         """
-        self.t = threading.Thread(target=self.stream_readchunk)
-        self.t.start()
+        #self.t = threading.Thread(target=self.stream_readchunk)
+        #self.t.start()
 
     def stream_start(self):
         """Adds data to self.buff2 until termination signal
@@ -191,8 +227,10 @@ class AudioDriver():
             self.stream = self.p.open(format=pyaudio.paInt16, channels=1,
                                       rate=self.fs, input=True,
                                       input_device_index=self.device,
-                                      frames_per_buffer=self.chunk)
-            self.stream_thread_new()
+                                      frames_per_buffer=self.chunk,
+                                      stream_callback=self.callback)
+            self.stream.start_stream()
+            #self.stream_thread_new()
         else:
             print("Could not find any mics. "
                   "Please connect a mic and restart audio_driver.")
@@ -246,6 +284,7 @@ class AudioDriver():
             while not rospy.is_shutdown() and self.stream.is_active():
                 self.publishFrame()
                 r.sleep()
+            #    rospy.sleep(0.1) 
             self.close()
         else:
             rospy.loginfo("Audio driver could not find working microphone.")

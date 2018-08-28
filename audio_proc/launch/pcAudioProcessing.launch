@@ -28,6 +28,7 @@
 <!-- #####FFT###### -->
 <group unless="$(arg fft_at_robot)">
   <node name="audio_fft" pkg="audio_proc" type="audio_fft.py" output="screen">
+    <param name="audio_common" value="$(arg audio_common)"/>
     <param name="sample_rate" value="$(arg sample_rate)"/>
     <param name="input_msg_type" value="AudioData" if="$(arg audio_common)"/>
     <param name="input_msg_type" value="AudioWav" unless="$(arg audio_common)"/>

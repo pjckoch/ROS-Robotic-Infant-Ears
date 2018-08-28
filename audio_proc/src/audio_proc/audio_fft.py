@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 import rospy
+import sys
 import numpy as np
 import scipy as sp
 from scipy import signal
 from audio_proc.msg import FFTData, AudioWav
 from rospy.numpy_msg import numpy_msg
-from audio_common_msgs.msg import AudioDataStampedRaw
 from std_msgs.msg import Float32MultiArray, Header
 
 
@@ -35,7 +35,26 @@ class FourierTransform():
         rospy.loginfo("FFT node running")
 
         self.sample_rate = rospy.get_param("~sample_rate",16000) 
-        self.msg_type_audio_common = rospy.get_param("~msg_type_audio_common", False)
+        self.type_audio_common = rospy.get_param("~audio_common", False)
+
+        # if you want to use the audio_common driver, you should apply a 
+        # patch to the audio_common package. It can be found here:
+        # https://github.com/pjckoch/ROS-Robotic-Infant-Ears
+        # in the folder "patch".
+        # Reason: applying the patch will make the audio_common driver capture
+        # timestamped buffers which is important for our timing analysis
+        if self.type_audio_common:
+            try: 
+                from audio_common_msgs.msg import AudioDataStampedRaw
+            except Exception as e:
+                print(e)
+                infomsg = "Failed to load the timestamped audio message type "
+                infomsg += "AudioDataStampedRaw. Note that this message type "
+                infomsg += "is only available if you apply a patch to the audio_common "
+                infomsg += "package. The patch can be found here: "
+                infomsg += "https://github.com/pjckoch/ROS-Robotic-Infant-Ears"
+                print("\n\n\n" +  infomsg + "\n\n\n")
+                sys.exit(1)
 
         self.pub=rospy.Publisher('fftData', FFTData, queue_size=5)
         self.time_pub_ = rospy.Publisher('fftDuration', Float32MultiArray,
@@ -76,7 +95,7 @@ class FourierTransform():
     def subscribe(self):
         """constantly checks for incoming audio chunks"""
         # since different audio drivers can be used, message types may vary
-        if self.msg_type_audio_common:
+        if self.type_audio_common:
             rospy.Subscriber("audio", AudioDataStampedRaw, self.publishFFT)
         else:
             rospy.Subscriber("audio", AudioWav, self.publishFFT)

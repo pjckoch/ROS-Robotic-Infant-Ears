@@ -167,6 +167,7 @@ class AudioDriver():
             self.keepRecording = False
         if self.keepRecording:
             callback_flag = pyaudio.paContinue
+
         else:
             self.stream.close()
             self.p.terminate()
@@ -240,7 +241,7 @@ class AudioDriver():
         if not self.cancel:
             # start recording
             self.stream_start()
-            r = rospy.Rate(100)
+            r = rospy.Rate(110)
             while not rospy.is_shutdown() and self.stream.is_active():
                 self.publishFrame()
                 r.sleep()

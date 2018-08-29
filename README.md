@@ -14,6 +14,7 @@ The catkin package **audio_proc** consists of three executable python programs:
 Every step (capture, fft, plot) is implemented as a separate ROS node. This enables us to the spread the nodes across distributed system compontens. In my case, the driver runs on a Raspberry Pi Zero W, whereas the other two nodes run on a personal computer. Remember to use a common ROS_MASTER_URI on the different devices. The publish rate of the audio driver is set to 110 Hz to ensure that it is above 100 Hz (fluctuations are normal). The FFT node uses data-triggered publishing and has therefore the same publish rate as the audio driver.
 
 ## Prerequisites:
+- Clone this repository
 - Clone the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository
 - Install [PyQtGraph](http://pyqtgraph.org/documentation/installation.html)
 - Install [NumPy and SciPy](https://www.scipy.org/install.html)

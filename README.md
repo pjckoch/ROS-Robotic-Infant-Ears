@@ -3,7 +3,7 @@
 ## Description
 This repository contains the ROS catkin package(s) for the auditory system of a robotic infant which I was working on for my bachelor thesis.
 
-**Note**: the ROS nodes in this repo are also analyzed regarding their timing. Therefore, you will also need the ROS-Timing repo (https://github.com/pjckoch/ROS-Timing.git).
+**Note**: the ROS nodes in this repo can be analyzed regarding their timing. Therefore, you will also need the ROS-Timing repo (https://github.com/pjckoch/ROS-Timing.git).
 
 The package audio_proc provides tools for capturing a live audio stream from a microphone, transforming the data from the time- to the spectral domain (FFT) and plotting both domains in a GUI. The package consists of three executable python programs:
 

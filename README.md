@@ -14,8 +14,8 @@ The catkin package **audio_proc** consists of three executable python programs:
 Every step (capture, fft, plot) is implemented as a separate ROS node. This enables us to the spread the nodes across distributed system compontens. In my case, the driver runs on a Raspberry Pi Zero W, whereas the other two nodes run on a PC. Remember to use a common ROS_MASTER_URI on the different devices. The publish rate of the audio driver is set to 110 Hz to ensure that it is above 100 Hz (fluctuations are normal). The FFT node uses data-triggered publishing and has therefore the same publish rate as the audio driver.
 
 ## Prerequisites:
-- Clone this repository
-- Clone the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository: Allows for timing analyzation and synchronization
+- Clone this repository.
+- Clone the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository: Allows for timing analyzation and synchronization.
 - Install [PyQtGraph](http://pyqtgraph.org/documentation/installation.html): Used for plotting the audio signal.
 - Install [NumPy and SciPy](https://www.scipy.org/install.html): Used for performing numeric computations like the FFT.
 - Install [PyQt4](http://pyqt.sourceforge.net/Docs/PyQt4/installation.html) or [PyQt5](http://pyqt.sourceforge.net/Docs/PyQt5/installation.html): Required by GUI that visualizes the plot.
@@ -29,7 +29,7 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 ## ROS parameters
 
 ### piAudioStream.launch:
-- **audio_common**: Set this to `true` if you want to use the [audio_common](https://github.com/ros-drivers/audio_common.git) driver to capture sound. This is set to `false` by default, as the audio_common driver does not work on Raspberry Pi (see audio_common issue ticket #100). If you choose to use the audio_common driver, you will need to apply a patch to it, because it does not publish timestamped messages by default. The patch can be found in this repo in the directory "patch".
+- **audio_common**: Set this to `true` if you want to use the [audio_common](https://github.com/ros-drivers/audio_common.git) driver to capture sound. This is set to `false` by default, as the audio_common driver does not work on Raspberry Pi (see audio_common issue ticket #100). If you choose to use the audio_common driver, you will need to apply this [patch](patch/audio_common_capture_timestamped.patch) to it, because it does not publish timestamped messages by default.
 - **device**: If using the audio_proc driver, PyAudio will give an index to every sound device. If you set device to a valid index, the driver will capture from this device. If you do not set the device parameter or set it to an invalid index, the driver will print out all available input devices and choose the first one automatically. In case, you use the audio_common driver, the device parameter refers to the index that you get when running `arecord -l` from your command line.
 - **sample_rate**: Sample rate in Hertz (Hz) with which you want to capture audio. It needs to be valid for the chosen device. If unsure which sample rate is supported, you can leave the device parameter empty and see what the driver prints to your terminal. Besides the device indices, it will print name and default sample rate for each input device.
 - **buffer_size**: Only for audio_proc driver. The buffer size is also referred to as frames per buffer or chunk. It specifies how many frames are stored into one buffer. As the FFT is based on the Cooley-Tukey algorithm, performance is best if the buffer size is a power of two. Note that large values (>= 1024) result in higher spectral resolution. However if the value is very large (>= 8192), the plot might respond very slowly. A good trade-off is a value of 2048.

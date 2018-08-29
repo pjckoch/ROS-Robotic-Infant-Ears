@@ -5,3 +5,5 @@ audio_common/
 ROS_env_loader.sh
 audio_proc/launch/robotEar.launch
 audio_proc/launch/robotEar.launch
+hark_audio_proc/
+hark_msgs/

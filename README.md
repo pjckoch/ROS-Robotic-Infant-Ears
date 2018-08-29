@@ -8,16 +8,16 @@ The repository provides tools for capturing a live audio stream from a microphon
 The catkin package **audio_proc** consists of three executable python programs:
 
 - [audio_driver.py](audio_proc/src/audio_proc/audio_driver.py): Captures audio stream from microphone and publishes it at 110 Hz.
-- **audio_fft.py**: Subscribes to an audio stream and performs the fast Fourier transform of the signal. It publishes the FFT along with the time-domain audio wave.
-- **audio_plot.py**: Subscribes to the FFT stream and plots the signal in time- and spectral domain.
+- [audio_fft.py](audio_proc/src/audio_proc/audio_fft.py): Subscribes to an audio stream and performs the fast Fourier transform of the signal. It publishes the FFT along with the time-domain audio wave.
+- [audio_plot.py](audio_proc/src/audio_proc/audio_plot.py): Subscribes to the FFT stream and plots the signal in time- and spectral domain.
 
 Every step (capture, fft, plot) is implemented as a separate ROS node. This enables us to the spread the nodes across distributed system compontens. In my case, the driver runs on a Raspberry Pi Zero W, whereas the other two nodes run on a personal computer. Remember to use a common ROS_MASTER_URI on the different devices. The publish rate of the audio driver is set to 110 Hz to ensure that it is above 100 Hz (fluctuations are normal). The FFT node uses data-triggered publishing and has therefore the same publish rate as the audio driver.
 
 ### Note:
-The ROS nodes in this repository can be analyzed regarding their timing. Therefore, you will also need the **ROS-Timing**  repository (https://github.com/pjckoch/ROS-Timing.git).
+The ROS nodes in this repository can be analyzed regarding their timing. Therefore, you will also need the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository.
 
 ## How to use
-1. `git clone` this repo and the **ROS-Timing** repository mentioned in the above **Note** into your catkin workspace.
+1. `git clone` this repo and the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository into your catkin workspace.
 2. `roslaunch audio_proc piAudioStream.launch` on any machine connected to a microphone.
 3. `roslaunch audio_proc pcAudioProcessing.launch` on any machine of your choice.
 

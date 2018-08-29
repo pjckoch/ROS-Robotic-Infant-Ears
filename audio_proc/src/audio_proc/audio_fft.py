@@ -11,8 +11,8 @@ LICENSE SUMMARY:
 
 applies to:
 - NumPy, Copyright (c) 2005-2018, NumPy Developers.
-- SciPy, Copyright © 2003-2013 SciPy Developers
-         Copyright © 2001, 2002 Enthought, Inc.
+- SciPy, Copyright (c) 2003-2013 SciPy Developers
+         Copyright (c) 2001, 2002 Enthought, Inc.
 - rospy, Copyright (c) 2008, Willow Garage, Inc.
 - std_msgs, Copyright (c) 2008, Willow Garage, Inc.
 - audio_common_msgs, Copyright (c) 2008, Willow Garage, Inc.

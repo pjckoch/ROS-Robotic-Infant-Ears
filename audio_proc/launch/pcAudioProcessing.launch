@@ -13,8 +13,7 @@
 <!-- If set to false, the FFT will be performed on the PC/Workstation -->
 <arg name="fft_at_robot" default="false"/>
 
-    
-<arg name="input_topic" default="/fftData"/>
+<!-- Set sample rate -->
 <arg name="sample_rate" default="16000"/>
 
 <!-- Decide whether to plot the data -->

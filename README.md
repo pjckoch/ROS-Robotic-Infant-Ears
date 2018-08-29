@@ -17,7 +17,7 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 The ROS nodes in this repository can be analyzed regarding their timing. Therefore, you will also need the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository.
 
 ## How to use
-1. `git clone` this repo and the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository into your catkin workspace.
+1. `git clone` this repository and the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository into your catkin workspace.
 2. `roslaunch audio_proc piAudioStream.launch` on any machine connected to a microphone.
 3. `roslaunch audio_proc pcAudioProcessing.launch` on any machine of your choice.
 

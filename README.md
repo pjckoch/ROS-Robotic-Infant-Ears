@@ -15,10 +15,10 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 
 ## Prerequisites:
 - Clone this repository
-- Clone the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository
-- Install [PyQtGraph](http://pyqtgraph.org/documentation/installation.html)
-- Install [NumPy and SciPy](https://www.scipy.org/install.html)
-- Install [PyQt4](http://pyqt.sourceforge.net/Docs/PyQt4/installation.html) or [PyQt5](http://pyqt.sourceforge.net/Docs/PyQt5/installation.html)
+- Clone the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository: Allows for timing analyzation and synchronization
+- Install [PyQtGraph](http://pyqtgraph.org/documentation/installation.html): Used for plotting the audio signal.
+- Install [NumPy and SciPy](https://www.scipy.org/install.html): Used for performing numeric computations like the FFT.
+- Install [PyQt4](http://pyqt.sourceforge.net/Docs/PyQt4/installation.html) or [PyQt5](http://pyqt.sourceforge.net/Docs/PyQt5/installation.html): Required by GUI that visualizes the plot.
 
 ## How to use
 1. `roslaunch audio_proc piAudioStream.launch` on any machine connected to a microphone.

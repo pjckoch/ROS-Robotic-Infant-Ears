@@ -3,8 +3,9 @@
 ## Description
 This repository contains the ROS catkin package(s) for the auditory system of a robotic infant which I was working on for my bachelor thesis. Licenses involved in this project are listed in the LICENSE directory.
 
-**Note**:
+### Note:
 The ROS nodes in this repository can be analyzed regarding their timing. Therefore, you will also need the **ROS-Timing**  repository (https://github.com/pjckoch/ROS-Timing.git).
+
 
 This repository provides tools for capturing a live audio stream from a microphone, transforming the data from the time- to the spectral domain (FFT) and plotting both domains in a GUI.
 
@@ -19,7 +20,7 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 ## How to use
 1. `git clone` this repo and the **ROS-Timing** repository mentioned in the above **Note** into your catkin workspace.
 2. `roslaunch audio_proc piAudioStream.launch` on any machine connected to a microphone.
-3. `roslaunch audio_proc pcAudioProcessing.launch` on any machine.
+3. `roslaunch audio_proc pcAudioProcessing.launch` on any machine of your choice.
 
 **Remark**: you can optionally pass parameters to the nodes when calling roslaunch. See below for a list of parameters.
 

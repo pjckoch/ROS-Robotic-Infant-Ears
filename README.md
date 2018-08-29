@@ -25,11 +25,11 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 ## ROS parameters
 
 ### piAudioStream.launch:
-- **audio_common**: Set this to `true`if you want to use the audio_common driver to capture sound. This is set to `false`by default, as the audio_common driver does not work on Raspberry Pi (see audio_common issue ticket #100). If you choose to use the audio_common driver, you will need to apply a patch to it, because it does not publish timestamped messages by default. The patch can be found in this repo in the directory "patch".
-- **device**: If using the audio_proc driver, PyAudio will give an index to every sound device. If you set device to a valid index, the driver will capture from this device. If you do not set the device parameter or set it to an invalid index, the driver will print out all available input devices and choose the first one automatically. In case, you use the audio_common driver, the device parameter refers to the index that you get when running `arecord -l`from your command line.
+- **audio_common**: Set this to `true` if you want to use the audio_common driver to capture sound. This is set to `false` by default, as the audio_common driver does not work on Raspberry Pi (see audio_common issue ticket #100). If you choose to use the audio_common driver, you will need to apply a patch to it, because it does not publish timestamped messages by default. The patch can be found in this repo in the directory "patch".
+- **device**: If using the audio_proc driver, PyAudio will give an index to every sound device. If you set device to a valid index, the driver will capture from this device. If you do not set the device parameter or set it to an invalid index, the driver will print out all available input devices and choose the first one automatically. In case, you use the audio_common driver, the device parameter refers to the index that you get when running `arecord -l` from your command line.
 - **sample_rate**: Sample rate in Hertz (Hz) with which you want to capture audio. It needs to be valid for the chosen device. If unsure which sample rate is supported, you can leave the device parameter empty and see what the driver prints to your terminal. Besides the device indices, it will print name and default sample rate for each input device.
 - **buffer_size**: Only for audio_proc driver. The buffer size is also referred to as frames per buffer or chunk. It specifies how many frames are stored into one buffer. As the FFT is based on the Cooley-Tukey algorithm, performance is best if the buffer size is a power of two. Note that large values (>= 1024) result in higher spectral resolution. However if the value is very large (>= 8192), the plot might respond very slowly. A good trade-off is a value of 2048.
-- **fft_at_robot**: Set this to `true`if you want to perform the FFT directly on your robot. Keep in mind that it might run slower than on a PC.
+- **fft_at_robot**: Set this to `true` if you want to perform the FFT directly on your robot. Keep in mind that it might run slower than on a PC.
 - **depth**: Only for audio_common driver. Specifies the bit depth.
 
 - **channels**: Only for audio_common driver. Number of channels to use. The audio_proc driver supports only 1 channel.
@@ -40,5 +40,5 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 - ***audio_common***
 - ***fft_at_robot***
 - ***sample_rate***
-- **plot**: Set this parameter to false if you do not want to plot the signal with audio_plot.py.
-- **bandwidth**: In case you want to plot the signal, the GUI will not be able to keep up with the publish rate of 110 Hz. Therefore a throttle node needs to be started which reduces the bandwidth for the plot node. The throttled topic will be separate from the original topic.
+- **plot**: Set this parameter to `false` if you do not want to plot the signal with audio_plot.py.
+- **bandwidth**: In case you want to plot the signal, the GUI will not be able to keep up with the publish rate of 110 Hz. Therefore a throttle node needs to be started which reduces the bandwidth for the plot node. The throttled topic will be separate from the original topic. Recommended bandwidth is 30 Hz.

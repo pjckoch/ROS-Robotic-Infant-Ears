@@ -3,13 +3,15 @@
 ## Description
 This repository contains the ROS catkin package(s) for the auditory system of a robotic infant which I was working on for my bachelor thesis.
 
-**Note**: the ROS nodes in this repo can be analyzed regarding their timing. Therefore, you will also need the ROS-Timing repo (https://github.com/pjckoch/ROS-Timing.git).
+**Note**: the ROS nodes in this repository can be analyzed regarding their timing. Therefore, you will also need the ROS-Timing repository (https://github.com/pjckoch/ROS-Timing.git).
 
-The package audio_proc provides tools for capturing a live audio stream from a microphone, transforming the data from the time- to the spectral domain (FFT) and plotting both domains in a GUI. The package consists of three executable python programs:
+This repository provides tools for capturing a live audio stream from a microphone, transforming the data from the time- to the spectral domain (FFT) and plotting both domains in a GUI.
 
-- **audio_driver.py**: captures audio stream from microphone
-- **audio_fft.py**: performs fast Fourier transform on audio signal
-- **audio_plot.py**: plots the signal in time- and spectral domain
+The catkin package **audio_proc** consists of three executable python programs:
+
+- **audio_driver.py**: Captures audio stream from microphone and publishes it at 110 Hz.
+- **audio_fft.py**: Subscribes to an audio stream and performs the fast Fourier transform of the signal. It publishes the FFT along with the time-domain audio wave.
+- **audio_plot.py**: Subscribes to the FFT stream and plots the signal in time- and spectral domain.
 
 Every step (capture, fft, plot) is implemented as a separate ROS node. This enables us to the spread the nodes across distributed system compontens. In my case, the driver runs on a Raspberry Pi Zero W, whereas the other two nodes run on a personal computer. Remember to use a common ROS_MASTER_URI on the different devices. The publish rate of the audio driver is set to 110 Hz to ensure that it is above 100 Hz (fluctuations are normal). The FFT node uses data-triggered publishing and has therefore the same publish rate as the audio driver.
 

@@ -1,17 +1,43 @@
 #!/usr/bin/env python
 
+"""
+The following is a summary of the licenses involved in this project.
+Please also refer to the LICENSE folder in this github repository
+for full licensing information.
+
+LICENSE SUMMARY:
+------------------------------------------
+           The MIT License (MIT)
+
+applies to:
+- AudioDriver class, Copyright (c) 2016 Scott W Harden
+- PyAudio, Copyright (c) 2006 Hubert Pham
+------------------------------------------
+              BSD License 2.0
+
+applies to:
+- NumPy, Copyright (c) 2005-2018, NumPy Developers.
+------------------------------------------
+                BSD License
+
+applies to:
+- rospy, Copyright (c) 2008, Willow Garage, Inc.
+- std_msgs, Copyright (c) 2008, Willow Garage, Inc.
+------------------------------------------
+"""
+
 import rospy
 import pyaudio
 import numpy as np
 from std_msgs.msg import Int32, Header
 from audio_proc.msg import AudioWav
-from rospy.numpy_msg import numpy_msg
 
 
 
 class AudioDriver():
     """The AudioDriver class provides access to continuously recorded
     (and mathematically processed) microphone data.
+
 
     ROS parameters:
 

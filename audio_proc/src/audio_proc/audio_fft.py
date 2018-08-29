@@ -1,12 +1,34 @@
 #!/usr/bin/env python
 
+"""
+The following is a summary of the licenses involved in this project.
+Please also refer to the LICENSE folder in this github repository
+for full licensing information.
+
+LICENSE SUMMARY:
+------------------------------------------
+              BSD License 2.0
+
+applies to:
+- NumPy, Copyright (c) 2005-2018, NumPy Developers.
+- SciPy, Copyright © 2003-2013 SciPy Developers
+         Copyright © 2001, 2002 Enthought, Inc.
+- 
+------------------------------------------
+                BSD License
+
+applies to:
+- rospy, Copyright (c) 2008, Willow Garage, Inc.
+- std_msgs, Copyright (c) 2008, Willow Garage, Inc.
+------------------------------------------
+"""
+
 import rospy
 import sys
 import numpy as np
 import scipy as sp
 from scipy import signal
 from audio_proc.msg import FFTData, AudioWav
-from rospy.numpy_msg import numpy_msg
 from std_msgs.msg import Float32MultiArray, Header
 
 
@@ -56,9 +78,9 @@ class FourierTransform():
                 print("\n\n\n" +  infomsg + "\n\n\n")
                 sys.exit(1)
 
-        self.pub=rospy.Publisher('fftData', FFTData, queue_size=5)
+        self.pub=rospy.Publisher('fftData', FFTData, queue_size=1)
         self.time_pub_ = rospy.Publisher('fftDuration', Float32MultiArray,
-                                         queue_size=10)
+                                         queue_size=5)
         self.subscribe()
  
 

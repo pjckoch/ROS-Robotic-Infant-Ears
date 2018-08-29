@@ -9,7 +9,6 @@
 <!--To use the audio_common driver set the following arg to true-->
 <arg name="audio_common" default="false"/>
 
-
 <!-- Decide whether you want to perform the FFT on the robot control unit (e.g. RPi) -->
 <!-- If set to false, the FFT will be performed on the PC/Workstation -->
 <arg name="fft_at_robot" default="false"/>

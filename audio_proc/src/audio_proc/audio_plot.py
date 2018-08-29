@@ -1,16 +1,45 @@
 #!/usr/bin/env python
 
+"""
+The following is a summary of the licenses involved in this project.
+Please also refer to the LICENSE folder in this github repository
+for full licensing information.
+
+LICENSE SUMMARY:
+------------------------------------------
+           The MIT License (MIT)
+
+applies to:
+- qtSubAndPlot class, Copyright (c) 2016 Scott W Harden
+- ui_main, Copyright (c) 2016 Scott W Harden
+- PyQtGraph, Copyright (c) 2012 University of North Carolina at Chapel Hill
+------------------------------------------
+              BSD License 2.0
+
+applies to:
+- NumPy, Copyright (c) 2005-2018, NumPy Developers.
+------------------------------------------
+                BSD License
+
+applies to:
+- rospy, Copyright (c) 2008, Willow Garage, Inc.
+------------------------------------------
+              GNU GPL License
+
+applies to:
+- PyQt4, Copyright (C) 2011 Riverbank Computing Limited
+         Note: Redistribution possible under compatible licenses
+               (see PyQt GPL exceptions)
+------------------------------------------
+"""
+
 import rospy
-
 from PyQt4 import QtGui,QtCore
-
 import sys
 import ui_main
 import numpy as np
 import pyqtgraph
 from audio_proc.msg import FFTData
-
-
 
 
 class qtSubAndPlot(QtGui.QMainWindow, ui_main.Ui_MainWindow):

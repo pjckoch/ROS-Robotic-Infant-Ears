@@ -21,6 +21,7 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 
 ## ROS parameters
 ### piAudioStream.launch
-- audio_common: set this to `true`if you want to use the audio_common driver to capture sound. This is set to `false`by default, as the audio_common driver does not work on Raspberry Pi (see audio_common issue ticket #100). If you choose to use the audio_common driver, you will need to apply a patch to it, because it does not publish timestamped messages by default. The patch can be found in this repo in the folder "patch"
-- device: if using the audio_proc driver, PyAudio will 
+- **audio_common**: Set this to `true`if you want to use the audio_common driver to capture sound. This is set to `false`by default, as the audio_common driver does not work on Raspberry Pi (see audio_common issue ticket #100). If you choose to use the audio_common driver, you will need to apply a patch to it, because it does not publish timestamped messages by default. The patch can be found in this repo in the folder "patch"
+- **device**: If using the audio_proc driver, PyAudio will give an index to every sound device. If you set device to a valid index, the driver will capture from this device. If you do not set the device parameter or set it to an invalid index, the driver will print out all available input devices and choose the first one automatically. In case, you use the audio_common driver, the device parameter refers to the index that you get when running `arecord -l`from your command line.
+- **sample_rate**: Set the sample rate with which you want to capture audio. 
 

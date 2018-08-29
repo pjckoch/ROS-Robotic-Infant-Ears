@@ -20,6 +20,7 @@ applies to:
 applies to:
 - rospy, Copyright (c) 2008, Willow Garage, Inc.
 - std_msgs, Copyright (c) 2008, Willow Garage, Inc.
+- audio_common_msgs, Copyright (c) 2008, Willow Garage, Inc.
 ------------------------------------------
 """
 

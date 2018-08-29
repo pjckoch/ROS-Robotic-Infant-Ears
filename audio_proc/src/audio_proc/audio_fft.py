@@ -21,12 +21,15 @@ applies to:
 
 import rospy
 import sys
+
 import numpy as np
 import scipy as sp
 from scipy import signal
+
 from audio_proc.msg import FFTData, AudioWav
 from std_msgs.msg import Float32MultiArray, Header
 
+from timing_analysis.python_timing_analysis import publishDuration
 
 def getFFT(data,srate):
       # apply Hamming Window function
@@ -98,17 +101,7 @@ class FourierTransform():
 
         # timing analysis: end
         callback_end = rospy.Time.now()
-        self.pub.publish(header, self.data, self.fft, self.freqs)
-
-        elapsed_proc = callback_end - callback_begin
-        elapsed = callback_end - msg.header.stamp
-
-        timearray = [elapsed_proc.to_sec(), elapsed.to_sec()]
-        timemsg = Float32MultiArray(data=timearray)
-
-
-        self.time_pub_.publish(timemsg)
-
+        publishDuration(msg.header.stamp, callback_begin, callback_end, self.time_pub_)
 
     def subscribe(self):
         """constantly checks for incoming audio chunks"""

@@ -16,9 +16,9 @@ The catkin package **audio_proc** consists of three executable python programs:
 Every step (capture, fft, plot) is implemented as a separate ROS node. This enables us to the spread the nodes across distributed system compontens. In my case, the driver runs on a Raspberry Pi Zero W, whereas the other two nodes run on a personal computer. Remember to use a common ROS_MASTER_URI on the different devices. The publish rate of the audio driver is set to 110 Hz to ensure that it is above 100 Hz (fluctuations are normal). The FFT node uses data-triggered publishing and has therefore the same publish rate as the audio driver.
 
 ## How to use
-1. `git clone`this repo and the ROS-Timing repo (https://github.com/pjckoch/ROS-Timing.git) into your catkin workspace.
-2. `roslaunch audio_proc piAudioStream.launch`on any machine connected to a microphone.
-3. `roslaunch audio_proc pcAudioProcessing.launch`on any machine.
+1. `git clone` this repo and the **ROS-Timing** repository mentioned in the above **Note** into your catkin workspace.
+2. `roslaunch audio_proc piAudioStream.launch` on any machine connected to a microphone.
+3. `roslaunch audio_proc pcAudioProcessing.launch` on any machine.
 
 **Remark**: you can optionally pass parameters to the nodes when calling roslaunch. See below for a list of parameters.
 

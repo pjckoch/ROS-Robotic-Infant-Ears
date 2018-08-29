@@ -22,7 +22,7 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 
 ## ROS parameters
 
-### piAudioStream.launch
+### piAudioStream.launch:
 - **audio_common**: Set this to `true`if you want to use the audio_common driver to capture sound. This is set to `false`by default, as the audio_common driver does not work on Raspberry Pi (see audio_common issue ticket #100). If you choose to use the audio_common driver, you will need to apply a patch to it, because it does not publish timestamped messages by default. The patch can be found in this repo in the folder "patch"
 - **device**: If using the audio_proc driver, PyAudio will give an index to every sound device. If you set device to a valid index, the driver will capture from this device. If you do not set the device parameter or set it to an invalid index, the driver will print out all available input devices and choose the first one automatically. In case, you use the audio_common driver, the device parameter refers to the index that you get when running `arecord -l`from your command line.
 - **sample_rate**: Sample rate in Hertz (Hz) with which you want to capture audio. It needs to be valid for the chosen device. If unsure which sample rate is supported, you can leave the device parameter empty and see what the driver prints to your terminal. Besides the device indices, it will print name and default sample rate for each input device.
@@ -32,7 +32,7 @@ Every step (capture, fft, plot) is implemented as a separate ROS node. This enab
 
 - **channels**: Only for audio_common driver. Number of channels to use. The audio_proc driver supports only 1 channel.
 
-### pcAudioProcessing.launch
+### pcAudioProcessing.launch:
 **Remark**: If you set parameters in piAudioStream.launch you might need to set them again when launching pcAudioProcessing.launch. This is due to the fact that roslaunch is unable to read existing parameters from the ROS parameter server. The parameters which need to be set again are italicized. Note that you are responsible for setting the parameter correctly. Otherwise errors may occur. If you know that you are going to permanently use a value different from the parameter's default value, it is recommendable to change the default value in the two launch-files.
 
 - ***audio_common***

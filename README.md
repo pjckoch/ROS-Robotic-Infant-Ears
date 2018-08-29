@@ -46,4 +46,4 @@ The ROS nodes in this repository can be analyzed regarding their timing. Therefo
 
 ## License
 
-This project is licensed under the 3-Clause-BSD-License (see the [LICENSE.md](LICENSE/LICENSE.md) for details). For third-party licenses see [LICENSE-3RD-PARTY.md](LICENSE/LICENSE-3RD-PARTY.md).
+This project is licensed under the 3-Clause-BSD-License (see the [LICENSE.md](LICENSE/LICENSE.md) for details). For third-party licenses, see [LICENSE-3RD-PARTY.md](LICENSE/LICENSE-3RD-PARTY.md).

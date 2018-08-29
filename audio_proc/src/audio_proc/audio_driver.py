@@ -13,14 +13,10 @@ applies to:
 - AudioDriver class, Copyright (c) 2016 Scott W Harden
 - PyAudio, Copyright (c) 2006 Hubert Pham
 ------------------------------------------
-              BSD License 2.0
+               BSD License
 
 applies to:
 - NumPy, Copyright (c) 2005-2018, NumPy Developers.
-------------------------------------------
-                BSD License
-
-applies to:
 - rospy, Copyright (c) 2008, Willow Garage, Inc.
 - std_msgs, Copyright (c) 2008, Willow Garage, Inc.
 ------------------------------------------

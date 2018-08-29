@@ -14,14 +14,10 @@ applies to:
 - ui_main, Copyright (c) 2016 Scott W Harden
 - PyQtGraph, Copyright (c) 2012 University of North Carolina at Chapel Hill
 ------------------------------------------
-              BSD License 2.0
+               BSD License
 
 applies to:
 - NumPy, Copyright (c) 2005-2018, NumPy Developers.
-------------------------------------------
-                BSD License
-
-applies to:
 - rospy, Copyright (c) 2008, Willow Garage, Inc.
 ------------------------------------------
               GNU GPL License
@@ -29,7 +25,7 @@ applies to:
 applies to:
 - PyQt4, Copyright (C) 2011 Riverbank Computing Limited
          Note: Redistribution possible under compatible licenses
-               (see PyQt GPL exceptions)
+               (see https://www.gnu.org/licenses/license-list.en.html)
 ------------------------------------------
 """
 

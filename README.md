@@ -7,7 +7,7 @@ The repository provides tools for capturing a live audio stream from a microphon
 
 The catkin package **audio_proc** consists of three executable python programs:
 
-- **audio_driver.py**: Captures audio stream from microphone and publishes it at 110 Hz.
+- [audio_driver.py](audio_proc/src/audio_proc/audio_driver.py): Captures audio stream from microphone and publishes it at 110 Hz.
 - **audio_fft.py**: Subscribes to an audio stream and performs the fast Fourier transform of the signal. It publishes the FFT along with the time-domain audio wave.
 - **audio_plot.py**: Subscribes to the FFT stream and plots the signal in time- and spectral domain.
 
@@ -46,4 +46,4 @@ The ROS nodes in this repository can be analyzed regarding their timing. Therefo
 
 ## License
 
-This project is licensed under the 3-Clause-BSD-License (see the [LICENSE/LICENSE.md](LICENSE.md) for details). For third-party licenses see [LICENSE-3RD-PARTY.md](LICENSE/LICENSE-3RD-PARTY.md).
+This project is licensed under the 3-Clause-BSD-License (see the [LICENSE.md](LICENSE/LICENSE.md) for details). For third-party licenses see [LICENSE-3RD-PARTY.md](LICENSE/LICENSE-3RD-PARTY.md).

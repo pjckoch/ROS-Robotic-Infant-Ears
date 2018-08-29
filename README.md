@@ -1,7 +1,7 @@
 # ROS-Robotic-Infant-Ears
 
 ## Description
-This repository contains the ROS catkin package(s) for the auditory system of a robotic infant which I was working on for my bachelor thesis. Licenses involved in this project are listed in the LICENSE directory.
+This repository contains the ROS catkin package(s) for the auditory system of a robotic infant which I am working on for my bachelor thesis. Licenses involved in this project are listed in the LICENSE directory.
 
 The repository provides tools for capturing a live audio stream from a microphone, transforming the data from the time- to the spectral domain (FFT) and plotting both domains in a GUI.
 

@@ -43,3 +43,7 @@ The ROS nodes in this repository can be analyzed regarding their timing. Therefo
 - ***sample_rate***
 - **plot**: Set this parameter to `false` if you do not want to plot the signal with audio_plot.py.
 - **bandwidth**: In case you want to plot the signal, the GUI will not be able to keep up with the publish rate of 110 Hz. Therefore a throttle node needs to be started which reduces the bandwidth for the plot node. The throttled topic will be separate from the original topic. Recommended bandwidth is 30 Hz.
+
+## License
+
+This project is licensed under the 3-Clause-BSD-License (see the [LICENSE/LICENSE.md](LICENSE.md) for details). For third-party licenses see [LICENSE-3RD-PARTY.md](LICENSE-3RD-PARTY.md).

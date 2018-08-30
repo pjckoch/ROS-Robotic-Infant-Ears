@@ -54,13 +54,12 @@
   <build_depend>std_msgs</build_depend>
   <build_export_depend>rospy</build_export_depend>
   <build_export_depend>std_msgs</build_export_depend>
+  <build_depend>timing_analysis</build_depend>
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>message_runtime</exec_depend>
   <depend>python-numpy</depend>
   <depend>python-scipy</depend>
-  <depend>hark_msgs</depend>
-  <depend>timing_analysis</depend>
   <!--<depend>python-pyqtgraph</depend> -->
 
 		

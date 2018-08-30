@@ -88,7 +88,7 @@ class FourierTransform():
         Calls the getFFT function and publishes the FFT data along with the time-domain signal.
         Note that there is no publishing rate specified since the rate is determined by the 
         incoming audio stream."""
-        # timing analysis: begin
+        # timing analysis: callback begin
         callback_begin = rospy.Time.now()
         
         header = Header()
@@ -99,8 +99,13 @@ class FourierTransform():
         if len(self.data) > 0:
             self.fft, self.freqs = getFFT(self.data, self.sample_rate)
 
-        # timing analysis: end
+        # timing analysis: callback end
         callback_end = rospy.Time.now()
+
+        # publish fft
+        self.pub.publish(header, self.data, self.fft, self.freqs)
+
+        # publish duration of callback
         publishDuration(msg.header.stamp, callback_begin, callback_end, self.time_pub_)
 
     def subscribe(self):

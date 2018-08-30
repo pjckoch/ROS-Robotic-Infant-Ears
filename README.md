@@ -14,11 +14,13 @@ The package **audio_proc** consists of three executable python programs:
 Every step (capture, FFT, plot) is implemented as a separate ROS node. This enables us to the spread the nodes across distributed system compontens. In my case, the driver runs on a Raspberry Pi Zero W, whereas the other two nodes run on a PC. Remember to use a common ROS_MASTER_URI on the different devices. The publish rate of the audio driver is set to 110 Hz to ensure that it is above 100 Hz (fluctuations are normal). The FFT node uses data-triggered publishing and has therefore the same publish rate as the audio driver.
 
 ## Prerequisites
-- Clone this repository.
-- Clone the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository: Allows for timing analyzation and synchronization.
-- Install [PyQtGraph](http://pyqtgraph.org/documentation/installation.html): Used for plotting the audio signal.
-- Install [NumPy and SciPy](https://www.scipy.org/install.html): Used for performing numeric computations like the FFT.
-- Install [PyQt4](http://pyqt.sourceforge.net/Docs/PyQt4/installation.html) or [PyQt5](http://pyqt.sourceforge.net/Docs/PyQt5/installation.html): Required by GUI that visualizes the plot.
+- Clone the following repositories into your catkin workspace:
+  - [this](https://github.com/pjckoch/ROS-Timing.git) repository.
+  - the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository: Allows for timing analyzation and synchronization.
+- Install the following libraries:
+  - [PyQtGraph](http://pyqtgraph.org/documentation/installation.html): Used for plotting the audio signal.
+  - [NumPy and SciPy](https://www.scipy.org/install.html): Used for performing numeric computations like the FFT.
+  - [PyQt4](http://pyqt.sourceforge.net/Docs/PyQt4/installation.html) or [PyQt5](http://pyqt.sourceforge.net/Docs/PyQt5/installation.html): Required by GUI that visualizes the plot.
 - Build your catkin workspace.
 
 ## How to use

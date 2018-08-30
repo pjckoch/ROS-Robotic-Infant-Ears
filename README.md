@@ -24,7 +24,7 @@ Every step (capture, FFT, plot) is implemented as a separate ROS node. This enab
 1. `roslaunch audio_proc piAudioStream.launch` on any machine connected to a microphone.
 2. `roslaunch audio_proc pcAudioProcessing.launch` on any machine of your choice.
 
-**Remark**: you can optionally pass parameters to the nodes when calling roslaunch. See below for a list of parameters.
+**Remark**: You can optionally pass parameters to the nodes when calling roslaunch. See below for a list of parameters.
 
 ## ROS parameters
 

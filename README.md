@@ -1,11 +1,11 @@
 # ROS-Robotic-Infant-Ears
 
 ## Description
-This repository contains the ROS catkin package(s) for the auditory system of a robotic infant which I am working on for my bachelor thesis. Licenses involved in this project are listed in the LICENSE directory.
+This repository contains the catkin package(s) for the auditory system of a robotic infant which I am working on for my bachelor thesis. Licenses involved in this project are listed in the LICENSE directory.
 
 The repository provides tools for capturing a live audio stream from a microphone, transforming the data from the time- to the spectral domain (FFT) and plotting both domains in a GUI.
 
-The catkin package **audio_proc** consists of three executable python programs:
+The package **audio_proc** consists of three executable python programs:
 
 - [audio_driver.py](audio_proc/src/audio_proc/audio_driver.py): Captures audio stream from microphone and publishes it at 110 Hz.
 - [audio_fft.py](audio_proc/src/audio_proc/audio_fft.py): Subscribes to an audio stream and performs the fast Fourier transform of the signal. It publishes the FFT along with the time-domain audio wave.

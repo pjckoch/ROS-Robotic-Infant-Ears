@@ -15,7 +15,7 @@ Every step (capture, FFT, plot) is implemented as a separate ROS node. This enab
 
 ## Prerequisites
 - Clone the following repositories into your catkin workspace:
-  - [this](https://github.com/pjckoch/ROS-Timing.git) repository.
+  - [this](https://github.com/pjckoch/ROS-Robotic-Infant-Ears.git) repository.
   - the [ROS-Timing](https://github.com/pjckoch/ROS-Timing.git) repository: Allows for timing analyzation and synchronization.
 - Install the following libraries:
   - [PyQtGraph](http://pyqtgraph.org/documentation/installation.html): Used for plotting the audio signal.

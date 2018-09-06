@@ -25,10 +25,10 @@ applies to:
 import rospy
 import pyaudio
 import numpy as np
+import threading
+import math
 from std_msgs.msg import Int32, Header
 from audio_proc.msg import AudioWav
-import threading
-
 
 class AudioDriver():
     """The AudioDriver class provides access to continuously recorded
@@ -66,7 +66,7 @@ class AudioDriver():
         self.buff0 = []
         self.buff1 = []
         self.buff2 = []
-        self.threebuff = []
+        self.twobuff = []
         
         self.get_stepsize()
         self.run()
@@ -170,15 +170,14 @@ class AudioDriver():
         """
         global lock
 
-        # ensure that publisher thread is currently not reading from threebuff
+        # ensure that publisher thread is currently not reading from twobuff
         lock.acquire()
         try:
-            # FIFO queue: drop oldest buffer
+            # FIFO: drop oldest buffer
             self.buff0 = self.buff1
-            self.buff1 = self.buff2
-            self.buff2 = np.fromstring(in_data,
+            self.buff1 = np.fromstring(in_data,
                                        dtype=np.uint8)
-            self.threebuff = np.concatenate([self.buff0, self.buff1, self.buff2])
+            self.twobuff = np.concatenate([self.buff0, self.buff1])
         except IOError as io: 
             rospy.loginfo("-- exception! terminating audio driver...")
             print("\n\n%s\n\n" % io) 
@@ -232,17 +231,20 @@ class AudioDriver():
     def get_stepsize(self):
         """Instead of using a data-triggered publish rate,
            the publish rate shall be constant at e.g. 100.
-           To ensure this, a frame slides along an array "threebuff"
-           that contains the second last, the last and the new buffer.
+           To ensure this, a frame slides along an array "twobuff"
+           that contains the two latest buffers.
            That way,
-           the data that is published is always (partly) new and
+           the data that is published is always new (no duplicates) and
            large chunk sizes can be used. The latter is important to
            obtain a high resolution in the spectral domain. This
            function computes the step-size by which the frame slides.
         """
         self.readrate = float(self.fs)/self.chunk
         self.stepsize = float(self.fs)/self.pubRate
-        self.stepsize = int(self.stepsize)
+        # round the stepsize -> always round down
+        # why: otherwise frame could reach upper bound of twobuff before
+        # new data is available --> would publish duplicate
+        self.stepsize = int(math.floor(self.stepsize))
         print("Sliding Frame step size: %d" % self.stepsize)
 
     def publishFrame(self):
@@ -251,11 +253,20 @@ class AudioDriver():
         """
         global lock
 
-        # ensure that PyAudio is currently not writing to threebuff
+        # to prevent the frame slider from reaching an index out of bounds,
+        # we must set the offset index back to zero when it exceeds
+        # 1/2 of the twobuff array. Due to the chosen step size, this will
+        # also be the point at which a new buffer has been written to the array
+        if self.offset >= self.chunk:
+            self.offset = 0 
+        else:
+           self.offset = self.offset + self.stepsize
+
+        # ensure that PyAudio is currently not writing to twobuff
         lock.acquire()
         try:
-            # slide frame along array threebuff
-            self.slideframe = self.threebuff[self.offset:self.offset + self.chunk]
+            # slide frame along array twobuff
+            self.slideframe = self.twobuff[self.offset:(self.offset+self.chunk)]
         finally:
             lock.release()
         # fill message header with current system time
@@ -266,8 +277,8 @@ class AudioDriver():
         self.pub.publish(header, self.slideframe.tolist())
         # to prevent the frame slider from reaching an index out of bounds,
         # we must set the offset index back to zero when it exceeds
-        # 1/3 of the threebuff array. Due to the chosen step size, this will
-        # also be the point when a new buffer has been written to the array
+        # 1/2 of the twobuff array. Due to the chosen step size, this will
+        # also be the point at which a new buffer has been written to the array
         if self.offset >= self.chunk:
             self.offset = 0 
         else:

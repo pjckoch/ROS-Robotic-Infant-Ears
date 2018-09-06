@@ -27,7 +27,7 @@ import pyaudio
 import numpy as np
 from std_msgs.msg import Int32, Header
 from audio_proc.msg import AudioWav
-
+import threading
 
 
 class AudioDriver():
@@ -49,6 +49,9 @@ class AudioDriver():
     """
 
     def __init__(self):
+        global lock
+        lock = threading.Lock()
+
         rospy.init_node('audio_driver')
         self.pub = rospy.Publisher('audio', AudioWav, queue_size=1)
         self.p = pyaudio.PyAudio()
@@ -165,6 +168,10 @@ class AudioDriver():
     def callback(self, in_data, frame_count, time_info, status):
         """Reads audio buffer and gets re-called every time a buffer was returned.
         """
+        global lock
+
+        # ensure that publisher thread is currently not reading from threebuff
+        lock.acquire()
         try:
             # FIFO queue: drop oldest buffer
             self.buff0 = self.buff1
@@ -187,6 +194,9 @@ class AudioDriver():
             rospy.loginfo(" -- exception! terminating audio driver...")
             print("\n\n%s\n\n" % E)
             self.keepRecording = False
+        finally:
+            lock.release()
+
         if self.keepRecording:
             callback_flag = pyaudio.paContinue
 
@@ -239,8 +249,15 @@ class AudioDriver():
         """This function publishes the frame that slides along
         the two concatenating buffers.
         """
-        # slide frame along array threebuff
-        self.slideframe = self.threebuff[self.offset:self.offset + self.chunk]
+        global lock
+
+        # ensure that PyAudio is currently not writing to threebuff
+        lock.acquire()
+        try:
+            # slide frame along array threebuff
+            self.slideframe = self.threebuff[self.offset:self.offset + self.chunk]
+        finally:
+            lock.release()
         # fill message header with current system time
         header = Header()
         header.stamp = rospy.Time.now()

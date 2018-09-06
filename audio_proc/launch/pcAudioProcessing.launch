@@ -37,7 +37,7 @@
 <!-- #####PLOT##### -->
 <group if="$(arg plot)">
   <node name="throttle" pkg="topic_tools" type="throttle"
-   args="messages $(arg input_topic) $(arg bandwidth)">
+   args="messages fftData $(arg bandwidth)">
   </node>
   <node name="audio_plot" pkg="audio_proc" type="audio_plot.py" output="screen">
     <param name="sample_rate" value="$(arg sample_rate)"/>

@@ -49,26 +49,28 @@ class AudioDriver():
     """
 
     def __init__(self):
+        # lock for thread-shared variable
         global lock
         lock = threading.Lock()
 
         rospy.init_node('audio_driver')
         self.pub = rospy.Publisher('audio', AudioWav, queue_size=1)
         self.p = pyaudio.PyAudio()
+        # get parameters from ROS parameter server
         self.device = rospy.get_param('~device', 3)
         self.fs = rospy.get_param('~sample_rate', 16000)
         self.chunk = rospy.get_param('~buffer_size', 2048)
-        self.pubRate = rospy.get_param('~publish_rate', 100)
-        self.cancel = False  # in case we can't find microphones
+        self.pubRate = rospy.get_param('~publish_rate', 110)
+        # in case no microphone can be found
+        self.cancel = False
+        # initialize variables
         self.stepsize = 0
         self.offset = 0
-        
         self.buff0 = []
         self.buff1 = []
         self.buff2 = []
         self.twobuff = []
-        
-        self.get_stepsize()
+        # start capturing and publishing
         self.run()
 
     #  LOOK FOR VALID INPUT DEVICES
@@ -242,7 +244,7 @@ class AudioDriver():
         self.readrate = float(self.fs)/self.chunk
         self.stepsize = float(self.fs)/self.pubRate
         # round the stepsize -> always round down
-        # why: otherwise frame could reach upper bound of twobuff before
+        # why: otherwise frame could potentially reach upper bound of twobuff before
         # new data is available --> would publish duplicate
         self.stepsize = int(math.floor(self.stepsize))
         print("Sliding Frame step size: %d" % self.stepsize)
@@ -254,14 +256,11 @@ class AudioDriver():
         global lock
 
         # to prevent the frame slider from reaching an index out of bounds,
-        # we must set the offset index back to zero when it exceeds
+        # we must set the offset index to zero + remaining offset when it exceeds
         # 1/2 of the twobuff array. Due to the chosen step size, this will
         # also be the point at which a new buffer has been written to the array
         if self.offset >= self.chunk:
-            self.offset = 0 
-        else:
-           self.offset = self.offset + self.stepsize
-
+            self.offset = self.offset-self.chunk 
         # ensure that PyAudio is currently not writing to twobuff
         lock.acquire()
         try:
@@ -275,14 +274,8 @@ class AudioDriver():
         # publish the audio message
         self.slideframe = np.asarray(self.slideframe, dtype=np.uint8)
         self.pub.publish(header, self.slideframe.tolist())
-        # to prevent the frame slider from reaching an index out of bounds,
-        # we must set the offset index back to zero when it exceeds
-        # 1/2 of the twobuff array. Due to the chosen step size, this will
-        # also be the point at which a new buffer has been written to the array
-        if self.offset >= self.chunk:
-            self.offset = 0 
-        else:
-           self.offset = self.offset + self.stepsize
+        # increment offset 
+        self.offset = self.offset + self.stepsize
  
     def run (self):
         """Start stream and publish audio data.
@@ -291,7 +284,10 @@ class AudioDriver():
         if not self.cancel:
             # start recording
             self.stream_start()
-            r = rospy.Rate(110)
+            # get stepsize for publisher sliding frame
+            self.get_stepsize()
+            r = rospy.Rate(self.pubRate)
+            # start publishing
             while not rospy.is_shutdown() and self.stream.is_active():
                 self.publishFrame()
                 r.sleep()

@@ -65,7 +65,8 @@ class FourierTransform():
         # Reason: applying the patch will make the audio_common driver capture
         # timestamped buffers which is important for our timing analysis
         if self.type_audio_common:
-            try: 
+            try:
+                global AudioDataStampedRaw 
                 from audio_common_msgs.msg import AudioDataStampedRaw
             except Exception as e:
                 print(e)

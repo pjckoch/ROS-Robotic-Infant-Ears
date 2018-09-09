@@ -16,7 +16,7 @@
 <arg name="channels" default="1"/>
 <arg name="sample_rate" default="16000"/>
 <arg name="depth" default="32"/>
-<arg name="buffer_size" default="2048"/>
+<arg name="buffer_size" default="1024"/>
 
 <!-- Decide whether you want to perform the FFT on the robot control unit (e.g. RPi) -->
 <arg name="fft_at_robot" default="false"/>

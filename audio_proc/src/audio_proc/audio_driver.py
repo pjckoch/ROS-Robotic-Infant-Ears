@@ -178,7 +178,7 @@ class AudioDriver():
             # FIFO: drop oldest buffer
             self.buff0 = self.buff1
             self.buff1 = np.fromstring(in_data,
-                                       dtype=np.uint8)
+                                       dtype=np.int16)
             self.twobuff = np.concatenate([self.buff0, self.buff1])
         except IOError as io: 
             rospy.loginfo("-- exception! terminating audio driver...")
@@ -260,7 +260,7 @@ class AudioDriver():
         # 1/2 of the twobuff array. Due to the chosen step size, this will
         # also be the point at which a new buffer has been written to the array
         if self.offset >= self.chunk:
-            self.offset = self.offset-self.chunk 
+            self.offset = self.offset-self.chunk
         # ensure that PyAudio is currently not writing to twobuff
         lock.acquire()
         try:
@@ -272,7 +272,7 @@ class AudioDriver():
         header = Header()
         header.stamp = rospy.Time.now()
         # publish the audio message
-        self.slideframe = np.asarray(self.slideframe, dtype=np.uint8)
+        self.slideframe = np.asarray(self.slideframe, dtype=np.int16)
         self.pub.publish(header, self.slideframe.tolist())
         # increment offset 
         self.offset = self.offset + self.stepsize

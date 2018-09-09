@@ -96,7 +96,12 @@ class FourierTransform():
         # copy header of subscribed message
         header.stamp = msg.header.stamp
 
-        self.data = np.frombuffer(msg.data, dtype=np.int16)
+        # get data from message: audio_common uses different data type
+        if self.type_audio_common:
+            self.data = np.frombuffer(msg.data, dtype=np.int16)
+        else:
+            self.data = msg.data
+
         if len(self.data) > 0:
             self.fft, self.freqs = getFFT(self.data, self.sample_rate)
 

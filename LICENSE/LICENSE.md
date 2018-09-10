@@ -1,7 +1,6 @@
 BSD 3-Clause License
 
-Copyright (c) 2018, Technical University of Munich  
-Patrick Koch (p.koch@tum.de)  
+Copyright (c) 2018, Patrick Koch (p.koch@tum.de)  
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
